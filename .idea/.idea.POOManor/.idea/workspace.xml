@@ -10,12 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8696cf9e-4c6b-4eb9-9419-a9c8eedcedb8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Cuisine.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Cuisine.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Cuisine.razor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Sdb.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Sdb.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Sdb.razor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.POOManor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.POOManor/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/POOManor/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/POOManor/Pages/Home.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/POOManor/Pages/Map.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/POOManor/Pages/Map.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOManor/wwwroot/cuisine.png" beforeDir="false" afterPath="$PROJECT_DIR$/POOManor/wwwroot/cuisine.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,23 +58,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.POOManor: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.POOManor: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": []
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.POOManor: http">
     <configuration name="POOManor: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/POOManor/POOManor.csproj" />
@@ -132,7 +132,9 @@
       <updated>1732964457936</updated>
       <workItem from="1732964459520" duration="1506000" />
       <workItem from="1732977877610" duration="1976000" />
-      <workItem from="1732983424409" duration="1347000" />
+      <workItem from="1732983424409" duration="1794000" />
+      <workItem from="1732991974896" duration="146000" />
+      <workItem from="1732992197752" duration="637000" />
     </task>
     <task id="LOCAL-00001" summary="1st">
       <option name="closed" value="true" />
@@ -158,7 +160,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732965056620</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Maps cuisine + salon avec background-image">
+      <option name="closed" value="true" />
+      <created>1732986341818</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732986341818</updated>
+    </task>
+    <task id="LOCAL-00005" summary="images">
+      <option name="closed" value="true" />
+      <created>1732986404649</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732986404649</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +201,8 @@
     <MESSAGE value="1st" />
     <MESSAGE value="a" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="Maps cuisine + salon avec background-image" />
+    <MESSAGE value="images" />
+    <option name="LAST_COMMIT_MESSAGE" value="images" />
   </component>
 </project>
