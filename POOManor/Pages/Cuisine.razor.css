@@ -1,0 +1,23 @@
+.mapcuisine {
+    display: grid;
+    grid-template-rows: repeat(15, 40px);
+    grid-template-columns: repeat(20, 40px);
+    background-image: url("cuisine.png");
+    background-size: cover;
+    background-position : center;
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    border : 2px solid black;
+}
+
+.row {
+    display: contents;
+}
+
+.cell {
+    border: 0.5px solid black;
+    width: 40px;
+    height: 40px;
+}

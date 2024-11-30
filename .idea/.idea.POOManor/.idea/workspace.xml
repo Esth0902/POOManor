@@ -9,34 +9,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8696cf9e-4c6b-4eb9-9419-a9c8eedcedb8" name="Changes" comment="test">
+    <list default="true" id="8696cf9e-4c6b-4eb9-9419-a9c8eedcedb8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Cuisine.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Cuisine.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/POOManor/Pages/Cuisine.razor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.POOManor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.POOManor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOManor/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/POOManor/Pages/Home.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOManor/Pages/Map.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/POOManor/Pages/Map.razor.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Esth0902"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Esth0902&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Esth0902/POOManor",
-    "accountId": "9b24fb28-6b60-47a2-8a6e-bb8eb10b3f5e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Esth0902/POOManor&quot;,
+    &quot;accountId&quot;: &quot;9b24fb28-6b60-47a2-8a6e-bb8eb10b3f5e&quot;
   }
-}]]></component>
+}</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2pZCxMPeoeZ2osWfY2ok7DLRaha" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -45,8 +60,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.POOManor: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -114,6 +131,8 @@
       <option name="presentableId" value="Default" />
       <updated>1732964457936</updated>
       <workItem from="1732964459520" duration="1506000" />
+      <workItem from="1732977877610" duration="1976000" />
+      <workItem from="1732983424409" duration="1347000" />
     </task>
     <task id="LOCAL-00001" summary="1st">
       <option name="closed" value="true" />
