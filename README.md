@@ -25,3 +25,7 @@ Hall d'entrée Cuisine Salon garage buanderie 1er étage : chambre 1 chambre 2 b
 objets : caisse à outil : objet aléatoire (marteau - papier toilette - lunettes) armoire cuisine : couteau, poêle, croquettes pour chat hall d'entrée : parapluie, boîte à chaussures, manteau garage :: buanderie : chambre 1 : chambre 2 : bureau : débarras : salle de bain : grenier : toute la map
 
 idée : étang avec poissons rouges, besoin d'une épuisette pour récupérer un poisson qui nourrit le chat
+
+Nathan : Personnage principal // Jardin 
+Esther : Monstres // Cuisine 
+Laeti : Objets // Chambres // Page d'accueil pour l'image du manoir. 
