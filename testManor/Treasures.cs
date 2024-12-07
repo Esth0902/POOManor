@@ -5,7 +5,6 @@ public string Name { get; set; }
 public int PositionX { get; set; } // Colonne
 public int PositionY { get; set; } // Ligne
 public virtual string Image { get; }
-
 protected int DamagePoints { get; set; }
 protected int DefensePoints { get; set; }
 
