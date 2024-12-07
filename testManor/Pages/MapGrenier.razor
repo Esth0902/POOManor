@@ -1,5 +1,8 @@
 ﻿@page "/mapGrenier"
-<h3>Grenier</h3>
+
+<div class="gestionvie">
+    Test
+</div>
 
 <div class="mapGrenier">
     @for (int row = 0; row < 5; row++)
@@ -20,9 +23,13 @@
     }
 </div>
 
+<div class="prompt">
+    Test
+</div>
+
 @code {
     private List<Monsters> MonstersList { get; set; } //initialise la liste des monstres
-    private bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
+    private bool StopMoving { get; set; } = true; //stopmoving initialisé à "false"
 
     protected override void OnInitialized()
     {

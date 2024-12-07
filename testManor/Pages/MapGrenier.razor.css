@@ -32,3 +32,15 @@
     height: 200%;
     object-fit: contain;
 }
+
+.prompt {
+    color: white;
+    background-color: #54A1A9;
+    border: 0.5mm solid white;
+    align-items: center;
+    margin: 10px;
+}
+
+.gestionvie {
+    color: white;
+}
