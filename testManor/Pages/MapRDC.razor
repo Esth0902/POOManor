@@ -1,4 +1,8 @@
 ﻿@page "/MapRDC"
+<div class="gestionvie">
+    Test
+</div>
+
 <h3>RDC</h3>
 <NavLink href="/MapGrenier"> grenier </NavLink>
 
@@ -21,9 +25,13 @@
     }
 </div>
 
+<div class="prompt">
+    Test
+</div>
+
 @code {
 private List<Monsters> MonstersList { get; set; } //initialise la liste des monstres
-private bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
+private bool StopMoving { get; set; } = true; //stopmoving initialisé à "false"
 
 protected override void OnInitialized()
 {
