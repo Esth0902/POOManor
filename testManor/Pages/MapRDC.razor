@@ -1,0 +1,91 @@
+﻿@page "/MapRDC"
+<h3>RDC</h3>
+<NavLink href="/MapGrenier"> grenier </NavLink>
+
+<div class="mapRDC">
+    @for (int row = 0; row < 10; row++)
+    {
+    <div class="row">
+        @for (int col = 0; col < 20; col++)
+        {
+        <div class="cell">
+            @if (MonstersList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //recherche les monstres présents dans le tableau
+            {
+            var monster = MonstersList.First(m => m.PositionX == col && m.PositionY == row && m.Alive());
+            <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affichage de son image
+            }
+
+        </div>
+        }
+    </div>
+    }
+</div>
+
+@code {
+private List<Monsters> MonstersList { get; set; } //initialise la liste des monstres
+private bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
+
+protected override void OnInitialized()
+{
+    MonstersList = new List<Monsters> // créer la liste des monstres présents sur la carte
+    {
+        //new Zombie("Zombie1_1", 4, 2),
+        //new Zombie("Zombie1_2", 4, 2),
+        new Zombie("Zombie2_1", 14, 2),
+        new Zombie("Zombie2_2", 14, 2),
+        //new Zombie("Zombie3_1", 4, 7),
+        //new Zombie("Zombie3_2", 4, 7),
+        new Zombie("Zombie4_1", 19, 7),
+        new Zombie("Zombie4_2", 19, 7),
+    };
+    
+}
+private async Task MoveMonsters()
+{
+var random = new Random();
+while (!StopMoving) //tant que "stopmoving" est différent de true
+{
+foreach (var monster in MonstersList)
+{
+int direction = random.Next(4); //valeur aléatoire entre 0 et 3 pour déterminer la direction
+switch (direction)
+{
+case 0: // vers le haut
+if (monster.PositionY > 0 ) //s'il n'est pas déjà tout en haut, monte d'une case
+monster.PositionY--;
+break;
+case 1: // vers le bas
+if (monster.PositionY < 9) //s'il n'est pas déjà tout en bas, descend d'une case
+monster.PositionY++;
+break;
+case 2: // vers la gauche
+if (monster.PositionX > 0) //s'il n'est pas déjà tout à gauche, change d'une case vers la gauche
+monster.PositionX--;
+break;
+case 3: // vers la droite
+if (monster.PositionX < 19) //s'il n'est pas déjà tout à droite, change d'une case vers la droite
+monster.PositionX++;
+break;
+
+}
+}
+
+StateHasChanged(); // Rafraîchit la map après chaque déplacement des monstres
+await Task.Delay(2000); // le fait toutes les secondes
+}
+}
+
+protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+if (firstRender)
+{
+await MoveMonsters();
+}
+}
+
+public void StopMovement() //pour arrêter les déplacements des monstres
+{
+StopMoving = true;
+}
+
+}
