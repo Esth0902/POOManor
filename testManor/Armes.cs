@@ -15,10 +15,10 @@ public class Armes
     
     List<Armes> armes = new List<Armes>
     {
-        new Armes("Marteau", "marteau.png", 3),
-        new Armes("Couteau", "epee.png", 2),
-        new Armes("Baton", "arc.png", 1),
-        new Armes("Poele", "poele.png", 2),
-        new Armes("Os","bone.png",1),
+        new Armes("Marteau", "images/hammer.png", 3),
+        new Armes("Couteau", "images/couteau.png", 2),
+        new Armes("Baton", "images/baton.png", 1),
+        new Armes("Poele", "images/poele.png", 2),
+        new Armes("Os","images/bone.png",1),
     };
 }
