@@ -4,4 +4,5 @@ namespace testManor.Pages;
 
 public partial class MapRDC : ComponentBase
 {
+    
 }
