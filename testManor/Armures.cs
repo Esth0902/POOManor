@@ -12,13 +12,17 @@ public class Armures
         Image = image;
         PointDefense = pointDefense;
     }
-    
-    List<Armures> armures = new List<Armures>
+
+    public static List<Armures> ListArmures()
     {
-        new Armures("Parapluie", "images/parapluie.png", 2),
-        new Armures("Casque", "images/velo.jpg", 3),
-        new Armures("Billes", "images/billes.png", 1),
-        new Armures("Patin", "images/patin.jpg", 2),
-        new Armures("Glue","images/glue.jpg",1),
-    };
+        return new List<Armures>
+
+        {
+            new Armures("Parapluie", "images/parapluie.png", 2),
+            new Armures("Casque", "images/velo.jpg", 3),
+            new Armures("Billes", "images/billes.png", 1),
+            new Armures("Patin", "images/patin.jpg", 2),
+            new Armures("Glue", "images/glue.jpg", 1),
+        };
+    }
 }
