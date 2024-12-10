@@ -17,11 +17,11 @@ public class Armes
     {
         return new List<Armes>
         {
-            new Armes("Marteau", "images/hammer.png", 3),
-            new Armes("Couteau", "images/couteau.png", 2),
-            new Armes("Baton", "images/baton.png", 1),
-            new Armes("Poele", "images/poele.png", 2),
-            new Armes("Os", "images/bone.png", 1),
+            new Armes("un marteau", "images/hammer.png", 3),
+            new Armes("un couteau", "images/couteau.png", 2),
+            new Armes("un baton", "images/baton.png", 1),
+            new Armes("une poele", "images/poele.png", 2),
+            new Armes("un os", "images/bone.png", 1),
         };
     }
 }

@@ -1,10 +1,8 @@
 ﻿@page "/MapRDC"
-@using Microsoft.AspNetCore.Components.Web
 <div class="gestionvie">
-    Test
+    <p><img src="images/HeroF.png" class="Personnage" />&nbsp; &nbsp; &nbsp; &nbsp;Point de vie :&nbsp; &nbsp; &nbsp; &nbsp;Point de dégat :&nbsp; &nbsp; &nbsp; &nbsp;Point de défense : </p>
 </div>
 
-<h3>RDC</h3>
 <NavLink href="/MapGrenier"> grenier </NavLink>
 
 <div @onkeydown="HandleKeyDown" tabindex="0" class="mapRDC" > 
@@ -38,7 +36,10 @@
 </div>
 
 <div class="prompt">
-    Test
+    @if (TresorTrouve)
+    {
+        <p>@TresorTexte</p>
+    }
 </div>
 
 @code {
@@ -48,6 +49,7 @@
     private int PlayerPositionY { get; set; } = 7; // position initiale du héros
     private bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
     private string TresorImage { get; set; } // Image aléatoire du trésor
+    private string TresorTexte { get; set; } // Texte du trésor
 
     protected override void OnInitialized()
     {
@@ -147,10 +149,13 @@
         if (objetAleatoire is Armures armure)
         {
             TresorImage = armure.Image;
+            TresorTexte = $"Vous avez trouvé {armure.Nom} qui vous procure {armure.PointDefense} point(s) de défense supplémentaire !";
         }
         else if (objetAleatoire is Armes arme)
         {
             TresorImage = arme.Image;
+            TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
+
         }
     }
-}
+}}

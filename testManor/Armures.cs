@@ -18,11 +18,11 @@ public class Armures
         return new List<Armures>
 
         {
-            new Armures("Parapluie", "images/parapluie.png", 2),
-            new Armures("Casque", "images/velo.jpg", 3),
-            new Armures("Billes", "images/billes.png", 1),
-            new Armures("Patin", "images/patin.jpg", 2),
-            new Armures("Glue", "images/glue.jpg", 1),
+            new Armures("un parapluie", "images/parapluie.png", 2),
+            new Armures("un casque", "images/velo.jpg", 3),
+            new Armures("des billes", "images/billes.png", 1),
+            new Armures("des patins", "images/patin.jpg", 2),
+            new Armures("de la glue", "images/glue.jpg", 1),
         };
     }
 }
