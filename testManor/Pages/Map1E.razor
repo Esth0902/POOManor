@@ -1,11 +1,11 @@
-﻿@page "/MapRDC"
+﻿@page "/Map1E"
 <div class="gestionvie">
     Test
 </div>
 
-<h3>RDC</h3>
+<h3>1er étage</h3>
 <NavLink href="/MapGrenier"> grenier </NavLink>
-<div class="mapRDC">
+<div class="map1E">
     @for (int row = 0; row < 10; row++) // parcourt les 10 lignes de la carte
     {
     <div class="row">
@@ -35,33 +35,33 @@ private bool StopMoving { get; set; } = false; //stopmoving initialisé à "fals
 
 private async Task MoveMonsters()
 {
-    var random = new Random();
+var random = new Random();
 
-    while (!StopMoving)
-    {
-        foreach (var monster in MonstersList)
-        {
-            int direction = random.Next(4);
-            int newRow = monster.PositionY, newCol = monster.PositionX;
+while (!StopMoving)
+{
+foreach (var monster in MonstersList)
+{
+int direction = random.Next(4);
+int newRow = monster.PositionY, newCol = monster.PositionX;
 
-            switch (direction)
-            {
-                case 0: newRow = monster.PositionY - 1; break; // Haut
-                case 1: newRow = monster.PositionY + 1; break; // Bas
-                case 2: newCol = monster.PositionX - 1; break; // Gauche
-                case 3: newCol = monster.PositionX + 1; break; // Droite
-            }
+switch (direction)
+{
+case 0: newRow = monster.PositionY - 1; break; // Haut
+case 1: newRow = monster.PositionY + 1; break; // Bas
+case 2: newCol = monster.PositionX - 1; break; // Gauche
+case 3: newCol = monster.PositionX + 1; break; // Droite
+}
 
-            if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
-            {
-                monster.PositionY = newRow;
-                monster.PositionX = newCol;
-            }
-        }
+if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
+{
+monster.PositionY = newRow;
+monster.PositionX = newCol;
+}
+}
 
-        StateHasChanged();
-        await Task.Delay(2000);
-    }
+StateHasChanged();
+await Task.Delay(2000);
+}
 }
 
 protected override async Task OnAfterRenderAsync(bool firstRender)
