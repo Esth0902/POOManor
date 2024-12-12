@@ -28,19 +28,22 @@
 }
 
 .prompt {
-    color: #122027;
-    background-color: #BFAA93;
-    border: 1mm solid white;
-    border-color: #50656C;
+    color: #BFAA93;
+    background-color: #122027;
+    border: 8px double #50656C;
+    border-radius: 28px 0px 28px 0px;
     align-items: center;
     margin: 10px;
     padding: 10px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .gestionvie {
     color: #BFAA93;
     font-weight: bold;
-    
+    margin : 0px;
+    padding: -10px;
 }
 
 .coffreimage{
@@ -62,5 +65,5 @@
     object-fit: contain;
 }
 .Personnage {
-    width: 50px;
+    width: 45px;
 }

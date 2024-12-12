@@ -157,5 +157,14 @@
             TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
 
         }
-    }
+        else if (objetAleatoire is Potions potions)
+        {
+            TresorImage = potions.Image;
+            TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
+        }
+        else if (objetAleatoire is DiversItems diversItems)
+        {
+            TresorImage = diversItems.Image;
+            TresorTexte = $"Vous avez trouvé {diversItems.Nom} !";
+        }
 }}

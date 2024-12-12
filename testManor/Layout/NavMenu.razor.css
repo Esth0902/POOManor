@@ -65,10 +65,10 @@
 }
 
 .Inventaire{
-    color: #54A1A9;
+    color: #BFAA93;
     background-color: #122027;
-    border: 1mm solid white;
-    border-color: #50656C;
+    border: 8px double #50656C;
+    border-radius: 28px 0px 28px 0px;
     align-items: center;
     margin: 10px;
     padding: 10px;
