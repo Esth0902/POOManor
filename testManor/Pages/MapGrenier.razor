@@ -28,7 +28,7 @@
 </div>
 
 @code {
-    private List<Monsters> MonstersList { get; set; } //initialise la liste des monstres
+    private List<Monsters>? MonstersList { get; set; } //initialise la liste des monstres
     private bool StopMoving { get; set; } = true; //stopmoving initialisé à "false"
 
     protected override void OnInitialized()
