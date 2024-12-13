@@ -60,10 +60,10 @@
 
 .TresorImage{
     width: 250%;
-    margin-left: -25px;
+    margin-left: -15px;
     margin-top: 5px;
     object-fit: contain;
 }
 .Personnage {
-    width: 15px;
+    width: 45px;
 }
