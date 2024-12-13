@@ -47,21 +47,19 @@
 }
 
 .coffreimage{
-    width: 150px;
-    height: 150px;
+    width: 250%;
     margin-left: -25px;
     margin-top: 5px;
     object-fit: contain;
 }
 .hero{
-    width: 150px;
-    height: 150px;
+    width: 250%;
     margin-left: -10px;
     object-fit: contain;
 }
 
 .TresorImage{
-    width: 450%;
+    width: 250%;
     margin-left: -25px;
     margin-top: 5px;
     object-fit: contain;
