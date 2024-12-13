@@ -24,7 +24,7 @@ public class Heros(string name, int positionX, int positionY)
 
 public class Hero : Heros
 {
-    public override string Image => "images/HeroM.png";
+    public override string Image => "images/HeroF.png";
     
     public Hero(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
