@@ -9,6 +9,8 @@ public class Heros(string name, int positionX, int positionY)
 
     protected int? Life { get; set; }
     protected int? Damage { get; set; }
+    protected int? Armor { get; set; }
+
 
     public void Attacked(int damage)
     {
@@ -29,6 +31,7 @@ public class Hero : Heros
     public Hero(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
         Life = 5;
+        Armor = 0;
         Damage = 2;
     }
 }
