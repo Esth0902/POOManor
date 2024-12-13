@@ -64,6 +64,19 @@
     color: #BFAA93;
 }
 
+.Inventaire{
+    color: #BFAA93;
+    background-color: #122027;
+    border: 8px double #50656C;
+    border-radius: 28px 0px 28px 0px;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    height: 10cm;
+    text-align: center;
+    font-weight: bold;
+}
+
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;
