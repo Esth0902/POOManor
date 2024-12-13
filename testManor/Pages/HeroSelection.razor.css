@@ -1,5 +1,5 @@
 .HeroM {
-    background-image: url('images/HeroM.jpg');
+    background-image: url('images/HeroM.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -17,7 +17,7 @@
 }
 
 .HeroF{
-    background-image: url('images/HeroF.jpg');
+    background-image: url('images/HeroF.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
