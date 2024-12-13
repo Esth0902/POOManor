@@ -1,3 +1,11 @@
+.ImageDroite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin : -150px;
+}
+
 .HeroM {
     background-image: url('images/HeroM.png');
     background-size: cover;
@@ -16,7 +24,13 @@
     width: 1000px;
     height: 500px;
 }
-
+.ImageGauche{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin : -150px;
+}
 .HeroF{
     background-image: url('images/HeroF.png');
     background-size: cover;
