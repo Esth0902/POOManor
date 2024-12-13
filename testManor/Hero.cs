@@ -29,6 +29,6 @@ public class Hero : Heros
     public Hero(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
         Life = 5;
-        Damage = 1;
+        Damage = 2;
     }
 }

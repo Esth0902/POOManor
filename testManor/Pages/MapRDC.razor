@@ -18,11 +18,6 @@
             var monster = MonstersList.First(m => m.PositionX == col && m.PositionY == row && m.Alive());
             <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affichage de son image
             }
-            @if (HerosList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //recherche le héro dans le tableau
-            {
-            var hero = HerosList.First(m => m.PositionX == col && m.PositionY == row && m.Alive());
-            <img src="@hero.Image" alt="@hero.Name" class="hero" />
-            }
         </div>
         }
     </div>
@@ -35,7 +30,6 @@
 
 @code {
 private List<Monsters> MonstersList { get; set; } //initialise la liste des monstres
-private List<Heros> HerosList { get; set; }
 private bool StopMoving { get; set; } = true; //stopmoving initialisé à "false"
 
 protected override void OnInitialized()
@@ -51,10 +45,6 @@ protected override void OnInitialized()
         new Zombie("Zombie4_1", 19, 7),
         new Zombie("Zombie4_2", 19, 7),
     };
-    HerosList = new List<Heros>
-        {
-            new Heros("Hero", 1, 1)
-        };
 }
 
 
