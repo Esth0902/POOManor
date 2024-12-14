@@ -8,7 +8,9 @@
            Column="20" 
            MonstersList="@RDCMonsters" 
            Zones="@RDCZones" 
-           Doors="@RDCDoors" />
+           Doors="@RDCDoors"
+           CoffrePositionX="7"
+           CoffrePositionY="3"/>
 </div>
 
 @code {
@@ -27,8 +29,11 @@
 
     private List<Door> RDCDoors = new List<Door>
     {
-        new Door((4, 5), (5, 5)), // Porte entre Zone 1 et Zone 2
-        new Door((4, 15), (5, 15)) // Porte entre Zone 3 et Zone 4
+        new Door((4, 3), (5, 3)), // Porte entre Zone 1 et Zone 2
+        new Door((4, 11), (5, 11)), // Porte entre Zone 3 et Zone 4
+        new Door((7,9), (7, 10)),
+        new Door((2,9), (2,10))
+        
     };
 }
 
