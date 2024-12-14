@@ -1,0 +1,45 @@
+﻿.perso-page {
+    background-image: url('images/Haunted_House.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 150vh;
+    color: #BFAA93;
+    -webkit-box-shadow: inset 0px 0px 50px 26px #122027;
+    box-shadow: inset 0px 0px 50px 26px #122027;
+    border: 9px solid rgba(18,32,39,0.54);
+    border-radius: 9px;
+}
+
+.hometitre {
+    text-align: right;
+}
+
+.ChoixPersonnageImage {
+    width: 50px;  /* Taille de l'icône */
+    height: 50px; /* Taille de l'icône */
+    margin-right: 10px; /* Espacement entre l'image et le texte */
+    vertical-align: middle; /* Pour aligner l'image verticalement avec le texte */
+}
+
+.ChoixPersonnage {
+    margin-left: 250px;
+}
+
+.Commencer {
+    background-color: #3E8199;
+    color :#BFAA93;
+    border-radius: 12px;
+    border : none;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: auto;
+
+}
