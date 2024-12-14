@@ -116,10 +116,10 @@ private void SelectRandomTreasure()
         TresorImage = potions.Image;
         TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
     }
-    else if (objetAleatoire is Item diversItems)
+    else if (objetAleatoire is Item item)
     {
-        TresorImage = diversItems.Image;
-        TresorTexte = $"Vous avez trouvé {diversItems.Nom} !";
+        TresorImage = item.Image;
+        TresorTexte = $"Vous avez trouvé {item.Nom} !";
     }
 }
 
