@@ -2,15 +2,15 @@
 
 public class Coffre
 {
-    private List<object> coffrealeatoires;
+    private List<Item> coffrealeatoires;
 
     public Coffre()
     {
-        coffrealeatoires = new List<object>();
-        coffrealeatoires.AddRange(Armures.ListArmures());
-        coffrealeatoires.AddRange(Armes.ListArme());
-        coffrealeatoires.AddRange(Potions.ListPotions());
-        coffrealeatoires.AddRange(DiversItems.ListDiversItems());
+        coffrealeatoires = new List<Item>();
+        coffrealeatoires.AddRange(Armure.ListArmures());
+        coffrealeatoires.AddRange(Arme.ListArme());
+        coffrealeatoires.AddRange(Potion.ListPotions());
+        coffrealeatoires.AddRange(Item.ListDiversItems());
 
     }
 

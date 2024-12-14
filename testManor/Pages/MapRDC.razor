@@ -147,18 +147,18 @@
         Coffre monCoffre = new Coffre();
         var objetAleatoire = monCoffre.ChoisirObjet();
 
-        if (objetAleatoire is Armures armure)
+        if (objetAleatoire is Armure armure)
         {
             TresorImage = armure.Image;
             TresorTexte = $"Vous avez trouvé {armure.Nom} qui vous procure {armure.PointDefense} point(s) de défense supplémentaire !";
         }
-        else if (objetAleatoire is Armes arme)
+        else if (objetAleatoire is Arme arme)
         {
             TresorImage = arme.Image;
             TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
 
         }
-        else if (objetAleatoire is Potions potions)
+        else if (objetAleatoire is Potion potions)
         {
             TresorImage = potions.Image;
             TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
