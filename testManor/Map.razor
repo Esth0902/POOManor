@@ -80,19 +80,19 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     switch (e.Key)
     {
         case "ArrowUp":
-            newPlayerRow = PlayerPositionY--; // Haut
+            newPlayerRow = PlayerPositionY-1; // Haut
             //if (PlayerPositionY > 0) PlayerPositionY--;
             break;
         case "ArrowDown":
-            newPlayerRow = PlayerPositionY++;
+            newPlayerRow = PlayerPositionY+1;
             //if (PlayerPositionY < 9) PlayerPositionY++;
             break;
         case "ArrowLeft":
-            newPlayerCol = PlayerPositionX--;
+            newPlayerCol = PlayerPositionX-1;
             //if (PlayerPositionX > 0) PlayerPositionX--;
             break;
         case "ArrowRight":
-            newPlayerCol = PlayerPositionX++;
+            newPlayerCol = PlayerPositionX+1;
             //if (PlayerPositionX < 19) PlayerPositionX++;
             break;
     }
