@@ -39,3 +39,45 @@
     height: 200%;
     object-fit: contain;
 }
+
+
+.prompt {
+    color: #BFAA93;
+    background-color: #122027;
+    border: 8px double #50656C;
+    border-radius: 28px 0px 28px 0px;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.gestionvie {
+    color: #BFAA93;
+    font-weight: bold;
+    margin : 0px;
+    padding: -10px;
+}
+
+.coffreimage{
+    width: 550%;
+    margin-left: -25px;
+    margin-top: 5px;
+    object-fit: contain;
+}
+.hero{
+    width: 350%;
+    margin-left: -10px;
+    object-fit: contain;
+}
+
+.TresorImage{
+    width: 450%;
+    margin-left: -25px;
+    margin-top: 5px;
+    object-fit: contain;
+}
+.Personnage {
+    width: 45px;
+}
