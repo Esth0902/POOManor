@@ -1,9 +1,14 @@
 ﻿@using testManor.Pages
-<div class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
+
+<div class="gestionvie">
+    <p><img src="images/HeroF.png" class="Personnage" />&nbsp; &nbsp; &nbsp; &nbsp;Point de vie :&nbsp; &nbsp; &nbsp; &nbsp;Point de dégat :&nbsp; &nbsp; &nbsp; &nbsp;Point de défense : </p>
+</div>
+
+<div @onkeydown="HandleKeyDown" tabindex="0" class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
     @for (int row = 0; row < Row; row++)
     {
-    @for (int col = 0; col < Column; col++)
-    {
+        @for (int col = 0; col < Column; col++)
+        {
     <div class="cell">
         @if (MonstersList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //cherche un monstre vivant présent dans la cellule
         {
@@ -11,11 +16,31 @@
         //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
         <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
         }
-
+        else if (row == 3 && col == 5 && !TresorTrouve)
+        {
+            <img src="images/coffre.png" class="coffreimage"/>
+        }
+        else if (TresorTrouve && row == 3 && col == 5) // Affiche l'image aléatoire si le trésor est trouvé
+        {
+        <img src="@TresorImage" class="TresorImage" />
+        }
+        else if (row == PlayerPositionY && col == PlayerPositionX) 
+        {
+        <img src="images/HeroF.png" class="hero"/>
+        }
     </div>
+    
     }
     }
 </div>
+
+<div class="prompt">
+    @if (TresorTrouve)
+    {
+    <p>@TresorTexte</p>
+    }
+</div>
+
 
 @code {
 
@@ -33,9 +58,71 @@ public List<Monsters> MonstersList { get; set; }
 public List<Zone> Zones { get; set; } // initialisation de la liste des zones
 [Parameter]
 public List<Door> Doors { get; set; } // initialisation de la liste des portes
+[Parameter] 
+public int PlayerPositionX { get; set; }// position initiale du héros
+[Parameter]
+public int PlayerPositionY { get; set; } // position initiale du héros
 
+private bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
+private string TresorImage { get; set; } // Image aléatoire du trésor
+private string TresorTexte { get; set; } // Texte du trésor
 
 public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
+
+private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
+{
+    switch (e.Key)
+    {
+        case "ArrowUp":
+            if (PlayerPositionY > 0) PlayerPositionY--;
+            break;
+        case "ArrowDown":
+            if (PlayerPositionY < 9) PlayerPositionY++;
+            break;
+        case "ArrowLeft":
+            if (PlayerPositionX > 0) PlayerPositionX--;
+            break;
+        case "ArrowRight":
+            if (PlayerPositionX < 19) PlayerPositionX++;
+            break;
+    }
+
+    if (PlayerPositionX == 5 && PlayerPositionY == 3 && !TresorTrouve)
+    {
+        TresorTrouve = true;
+        SelectRandomTreasure();
+    }
+    StateHasChanged(); // Rafraîchit la map après chaque déplacement
+}
+
+private void SelectRandomTreasure()
+{
+    Coffre monCoffre = new Coffre();
+    var objetAleatoire = monCoffre.ChoisirObjet();
+
+    if (objetAleatoire is Armures armure)
+    {
+        TresorImage = armure.Image;
+        TresorTexte = $"Vous avez trouvé {armure.Nom} qui vous procure {armure.PointDefense} point(s) de défense supplémentaire !";
+    }
+    else if (objetAleatoire is Armes arme)
+    {
+        TresorImage = arme.Image;
+        TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
+
+    }
+    else if (objetAleatoire is Potions potions)
+    {
+        TresorImage = potions.Image;
+        TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
+    }
+    else if (objetAleatoire is DiversItems diversItems)
+    {
+        TresorImage = diversItems.Image;
+        TresorTexte = $"Vous avez trouvé {diversItems.Nom} !";
+    }
+}
+
 
 public async Task MoveMonsters()
 {
