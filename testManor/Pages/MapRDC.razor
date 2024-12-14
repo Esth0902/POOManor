@@ -1,80 +1,34 @@
 ﻿@page "/MapRDC"
-<div class="gestionvie">
-    Test
-</div>
 
-<h3>RDC</h3>
-<NavLink href="/MapGrenier"> grenier </NavLink>
-<div class="mapRDC">
-    @for (int row = 0; row < 10; row++) // parcourt les 10 lignes de la carte
-    {
-    <div class="row">
-        @for (int col = 0; col < 20; col++) // parcourt les 20 colonnes de la carte
-        {
-        <div class="cell">
-            @if (MonstersList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //cherche un monstre vivant présent dans la cellule
-            {
-            var monster = MonstersList.First(m => m.PositionX == col && m.PositionY == row && m.Alive()); //récupère le premier monstre vivant trouvé dans la cellule
-            //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
-            <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
-            }
-
-        </div>
-        }
-    </div>
-    }
-</div>
-
-<div class="prompt">
-    Test
+<div>
+    <h1>1er étage</h1>
+    <Map CurrentFloorImage=images/MapRDC.png 
+         CurrentMap="map" 
+         Row="10" 
+         Column="20" 
+         MonstersList="@RDCMonsters" 
+         Zones="@RDCZones" 
+         Doors="@RDCDoors" />
 </div>
 
 @code {
-private List<Monsters> MonstersList { get; set; } //initialise la liste des monstres
-private bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
-
-private async Task MoveMonsters()
-{
-    var random = new Random();
-
-    while (!StopMoving)
+    private List<Monsters> RDCMonsters = new List<Monsters>
     {
-        foreach (var monster in MonstersList)
-        {
-            int direction = random.Next(4);
-            int newRow = monster.PositionY, newCol = monster.PositionX;
+        new Zombie("Zombie1", 2, 8),
+        new Zombie("Zombie2", 0,3)
+    };
 
-            switch (direction)
-            {
-                case 0: newRow = monster.PositionY - 1; break; // Haut
-                case 1: newRow = monster.PositionY + 1; break; // Bas
-                case 2: newCol = monster.PositionX - 1; break; // Gauche
-                case 3: newCol = monster.PositionX + 1; break; // Droite
-            }
+    private List<Zone> RDCZones = new List<Zone>
+    {
+        new Zone(0, 4, 0, 9), // Zone 1
+        new Zone(5, 9, 0, 9), // Zone 2
+        new Zone(0, 4, 10, 19), // Zone 3
+        new Zone(5, 9, 10, 19) // Zone 4
+    };
 
-            if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
-            {
-                monster.PositionY = newRow;
-                monster.PositionX = newCol;
-            }
-        }
-
-        StateHasChanged();
-        await Task.Delay(2000);
-    }
-}
-
-protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-if (firstRender)
-{
-await MoveMonsters();
-}
-}
-
-public void StopMovement() //pour arrêter les déplacements des monstres
-{
-StopMoving = true;
-}
-
+    private List<Door> RDCDoors = new List<Door>
+    {
+        new Door((4, 5), (5, 5)), // Porte entre Zone 1 et Zone 2
+        new Door((4, 15), (5, 15)) // Porte entre Zone 3 et Zone 4
+    };
 }
