@@ -1,0 +1,99 @@
+﻿@using testManor.Pages
+<div class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
+    @for (int row = 0; row < Row; row++)
+    {
+    @for (int col = 0; col < Column; col++)
+    {
+    <div class="cell">
+        @if (MonstersList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //cherche un monstre vivant présent dans la cellule
+        {
+        var monster = MonstersList.First(m => m.PositionX == col && m.PositionY == row && m.Alive()); //récupère le premier monstre vivant trouvé dans la cellule
+        //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
+        <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
+        }
+
+    </div>
+    }
+    }
+</div>
+
+@code {
+
+[Parameter]
+public string CurrentFloorImage { get; set; }
+[Parameter]
+public string CurrentMap { get; set; }
+[Parameter]
+public int Row { get; set; }
+[Parameter]
+public int Column { get; set; }
+[Parameter]
+public List<Monsters> MonstersList { get; set; }
+[Parameter]
+public List<Zone> Zones { get; set; } // initialisation de la liste des zones
+[Parameter]
+public List<Door> Doors { get; set; } // initialisation de la liste des portes
+
+
+public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
+
+public async Task MoveMonsters()
+{
+var random = new Random();
+
+while (!StopMoving)
+{
+foreach (var monster in MonstersList)
+{
+int direction = random.Next(4);
+int newRow = monster.PositionY, newCol = monster.PositionX;
+
+switch (direction)
+{
+case 0: newRow = monster.PositionY - 1; break; // Haut
+case 1: newRow = monster.PositionY + 1; break; // Bas
+case 2: newCol = monster.PositionX - 1; break; // Gauche
+case 3: newCol = monster.PositionX + 1; break; // Droite
+}
+
+if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
+{
+monster.PositionY = newRow;
+monster.PositionX = newCol;
+}
+}
+
+StateHasChanged();
+await Task.Delay(2000);
+}
+}
+
+protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+if (firstRender)
+{
+await MoveMonsters();
+}
+}
+
+public void StopMovement() //pour arrêter les déplacements des monstres
+{
+StopMoving = true;
+}
+
+public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetCol)
+{
+// Vérifier si le déplacement reste dans la même zone
+var currentZone = Zones.FirstOrDefault(z => z.IsInside(currentRow, currentCol));
+//recherche dans la liste des zones le premier élément qui répond à la condition, sinon renvoie null
+var targetZone = Zones.FirstOrDefault(z => z.IsInside(targetRow, targetCol));
+
+if (currentZone == targetZone)
+return true;
+
+// Vérifier si le déplacement passe par une porte
+return Doors.Any(d =>
+(d.Position1 == (currentRow, currentCol) && d.Position2 == (targetRow, targetCol)) ||
+(d.Position2 == (currentRow, currentCol) && d.Position1 == (targetRow, targetCol)));
+}
+}
