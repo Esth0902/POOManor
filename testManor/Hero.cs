@@ -2,6 +2,7 @@ namespace testManor.Pages;
 
 public class Heros(string name, int positionX, int positionY)
 {
+    
     public string? Name { get; set; } = name;
     public int? PositionX { get; set; } = positionX;
     public int? PositionY { get; set; } = positionY;

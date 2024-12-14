@@ -1,56 +1,41 @@
-.ImageDroite{
+.hometitre {
+    color: #BFAA93;
+}
+
+.container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin : -150px;
+    justify-content: space-around;
+    height: auto;
 }
 
 .HeroM {
-    background-image: url('images/HeroM.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 150vh;
-    color: #BFAA93;
-    -webkit-box-shadow: inset 0px 0px 50px 26px #122027;
-    box-shadow: inset 0px 0px 50px 26px #122027;
-    border: 9px solid rgba(18,32,39,0.54);
-    border-radius: 9px;
-    padding-right: 30px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 530px;
-    width: 1000px;
-    height: 500px;
-}
-.ImageGauche{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin : -150px;
-}
-.HeroF{
-    background-image: url('images/HeroF.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 150vh;
-    color: #BFAA93;
-    -webkit-box-shadow: inset 0px 0px 50px 26px #122027;
-    box-shadow: inset 0px 0px 50px 26px #122027;
-    border: 9px solid rgba(18,32,39,0.54);
-    border-radius: 9px;
-    padding-right: 10px;
-    padding-left: 30px;
-    padding-top: 10px;
-    padding-bottom: 530px;
-    width: 1000px;
-    height: 500px;
+    width: 40%;
+    max-width: 300px;
+    height: auto;
+    border: 2px solid #BFAA93;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.HeroF {
+    width: 40%;
+    max-width: 300px;
+    height: auto;
+    border: 2px solid #BFAA93;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+.form {
+    color: #BFAA93;
+    text-align: center;
+    height: auto;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+}
 
 .bouton {
     background-color: #3E8199;
@@ -74,6 +59,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: auto;
     margin : -150px;
 }
