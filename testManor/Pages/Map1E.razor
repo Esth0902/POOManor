@@ -1,0 +1,34 @@
+﻿@page "/Map1E"
+
+<div>
+    <h1>1er étage</h1>
+    <Map CurrentFloorImage=images/1E.png 
+           CurrentMap="map" 
+           Row="10" 
+           Column="20" 
+           MonstersList="@RDCMonsters" 
+           Zones="@RDCZones" 
+           Doors="@RDCDoors" />
+</div>
+
+@code {
+    private List<Monsters> RDCMonsters = new List<Monsters>
+    {
+        new Ghost("Ghost1", 2, 8),
+    };
+
+    private List<Zone> RDCZones = new List<Zone>
+    {
+        new Zone(0, 4, 0, 9), // Zone 1
+        new Zone(5, 9, 0, 9), // Zone 2
+        new Zone(0, 4, 10, 19), // Zone 3
+        new Zone(5, 9, 10, 19) // Zone 4
+    };
+
+    private List<Door> RDCDoors = new List<Door>
+    {
+        new Door((4, 5), (5, 5)), // Porte entre Zone 1 et Zone 2
+        new Door((4, 15), (5, 15)) // Porte entre Zone 3 et Zone 4
+    };
+}
+

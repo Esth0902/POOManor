@@ -9,6 +9,7 @@ public class Monsters
 
     protected int Life { get; set; }
     protected int Damage { get; set; }
+    
 
     public Monsters(string name, int positionX, int positionY)
     {
@@ -61,5 +62,4 @@ public class Werewolf : Monsters
         Damage = 5;
     }
 }
-
 
