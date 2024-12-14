@@ -16,11 +16,11 @@
         //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
         <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
         }
-        else if (row == 3 && col == 5 && !TresorTrouve)
+        else if (row == CoffrePositionY && col == CoffrePositionX && !TresorTrouve)
         {
             <img src="images/coffre.png" class="coffreimage"/>
         }
-        else if (TresorTrouve && row == 3 && col == 5) // Affiche l'image aléatoire si le trésor est trouvé
+        else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche l'image aléatoire si le trésor est trouvé
         {
         <img src="@TresorImage" class="TresorImage" />
         }
@@ -62,6 +62,11 @@ public List<Door> Doors { get; set; } // initialisation de la liste des portes
 public int PlayerPositionX { get; set; }// position initiale du héros
 [Parameter]
 public int PlayerPositionY { get; set; } // position initiale du héros
+[Parameter] 
+    public int CoffrePositionX { get; set; }
+[Parameter]
+    public int CoffrePositionY { get; set; }
+//class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
 
 private bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
@@ -71,27 +76,38 @@ public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false
 
 private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
 {
+    int newPlayerRow = PlayerPositionY, newPlayerCol = PlayerPositionX;
     switch (e.Key)
     {
         case "ArrowUp":
-            if (PlayerPositionY > 0) PlayerPositionY--;
+            newPlayerRow = PlayerPositionY--; // Haut
+            //if (PlayerPositionY > 0) PlayerPositionY--;
             break;
         case "ArrowDown":
-            if (PlayerPositionY < 9) PlayerPositionY++;
+            newPlayerRow = PlayerPositionY++;
+            //if (PlayerPositionY < 9) PlayerPositionY++;
             break;
         case "ArrowLeft":
-            if (PlayerPositionX > 0) PlayerPositionX--;
+            newPlayerCol = PlayerPositionX--;
+            //if (PlayerPositionX > 0) PlayerPositionX--;
             break;
         case "ArrowRight":
-            if (PlayerPositionX < 19) PlayerPositionX++;
+            newPlayerCol = PlayerPositionX++;
+            //if (PlayerPositionX < 19) PlayerPositionX++;
             break;
     }
+    if (CanMoveTo(PlayerPositionY, PlayerPositionX, newPlayerRow, newPlayerCol))
+    {
+        PlayerPositionY = newPlayerRow;
+        PlayerPositionX = newPlayerCol;
+    }
 
-    if (PlayerPositionX == 5 && PlayerPositionY == 3 && !TresorTrouve)
+    if (PlayerPositionX == CoffrePositionX && PlayerPositionY == CoffrePositionY && !TresorTrouve)
     {
         TresorTrouve = true;
         SelectRandomTreasure();
     }
+    
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
@@ -126,41 +142,40 @@ private void SelectRandomTreasure()
 
 public async Task MoveMonsters()
 {
-var random = new Random();
+    var random = new Random();
+    while (!StopMoving)
+    {
+        foreach (var monster in MonstersList)
+        {
+            int direction = random.Next(4);
+            int newRow = monster.PositionY, newCol = monster.PositionX;
 
-while (!StopMoving)
-{
-foreach (var monster in MonstersList)
-{
-int direction = random.Next(4);
-int newRow = monster.PositionY, newCol = monster.PositionX;
+            switch (direction)
+            {
+                case 0: newRow = monster.PositionY - 1; break; // Haut
+                case 1: newRow = monster.PositionY + 1; break; // Bas
+                case 2: newCol = monster.PositionX - 1; break; // Gauche
+                case 3: newCol = monster.PositionX + 1; break; // Droite
+            }
 
-switch (direction)
-{
-case 0: newRow = monster.PositionY - 1; break; // Haut
-case 1: newRow = monster.PositionY + 1; break; // Bas
-case 2: newCol = monster.PositionX - 1; break; // Gauche
-case 3: newCol = monster.PositionX + 1; break; // Droite
-}
+            if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
+            {
+                monster.PositionY = newRow;
+                monster.PositionX = newCol;
+            }
+        }
 
-if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
-{
-monster.PositionY = newRow;
-monster.PositionX = newCol;
-}
-}
-
-StateHasChanged();
-await Task.Delay(2000);
-}
+    StateHasChanged();
+    await Task.Delay(2000);
+    }
 }
 
 protected override async Task OnAfterRenderAsync(bool firstRender)
 {
-if (firstRender)
-{
-await MoveMonsters();
-}
+    if (firstRender)
+    {
+        await MoveMonsters();
+    }
 }
 
 public void StopMovement() //pour arrêter les déplacements des monstres
