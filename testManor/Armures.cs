@@ -19,10 +19,10 @@ public class Armures
 
         {
             new Armures("un parapluie", "images/parapluie.png", 2),
-            new Armures("un casque", "images/velo.jpg", 3),
+            new Armures("un casque", "images/velo.png", 3),
             new Armures("des billes", "images/billes.png", 1),
-            new Armures("des patins", "images/patin.jpg", 2),
-            new Armures("de la glue", "images/glue.jpg", 1),
+            new Armures("des patins", "images/patin.png", 2),
+            new Armures("de la glue", "images/glue.png", 1),
         };
     }
 }

@@ -21,7 +21,7 @@ public class Armes
             new Armes("un couteau", "images/couteau.png", 2),
             new Armes("un baton", "images/baton.png", 1),
             new Armes("une poele", "images/poele.png", 2),
-            new Armes("un os", "images/bone.png", 1),
+            new Armes("un os", "images/os.png", 1),
         };
     }
 }

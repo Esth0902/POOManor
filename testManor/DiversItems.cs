@@ -15,9 +15,9 @@ public class DiversItems
     {
         return new List<DiversItems>
         {
-            new DiversItems("des planches", "images/planches.jpg"),
-            new DiversItems("des vis", "images/vis.jpg"),
-            new DiversItems("une visseuse", "images/visseuse.jpg"),
+            new DiversItems("des planches", "images/planches.png"),
+            new DiversItems("des vis", "images/vis.png"),
+            new DiversItems("une visseuse", "images/visseuse.png"),
         };
     }
 }
