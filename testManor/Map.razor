@@ -1,4 +1,5 @@
 ﻿@using testManor.Pages
+@inject NavigationManager nav
 
 <div class="gestionvie">
     <p><img src="images/HeroF.png" class="Personnage" />&nbsp; &nbsp; &nbsp; &nbsp;Point de vie :&nbsp; &nbsp; &nbsp; &nbsp;Point de dégat :&nbsp; &nbsp; &nbsp; &nbsp;Point de défense : </p>
@@ -27,6 +28,10 @@
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
         <img src="images/HeroF.png" class="hero"/>
+        }
+        else if (row == StairsPositionY && col == StairsPositionX) // Affiche l'image des escaliers
+        {
+        <img src="images/Stairs1.png" class="StairsImage" />
         }
     </div>
     
@@ -66,12 +71,19 @@ public int PlayerPositionY { get; set; } // position initiale du héros
     public int CoffrePositionX { get; set; }
 [Parameter]
     public int CoffrePositionY { get; set; }
+
+[Parameter] 
+public int StairsPositionX { get; set; }
+[Parameter]
+public int StairsPositionY { get; set; }
 //class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
+
 
 private bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
 private string TresorTexte { get; set; } // Texte du trésor
 
+private string StairsImage { get; set; } // Image Escaliers
 public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
 
 private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
@@ -107,7 +119,10 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         TresorTrouve = true;
         SelectRandomTreasure();
     }
-    
+    if (PlayerPositionX == StairsPositionX && PlayerPositionY == StairsPositionY)
+    {
+        nav.NavigateTo("/Map1E");
+    }
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
