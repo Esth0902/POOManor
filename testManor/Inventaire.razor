@@ -1,0 +1,14 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using testManor.Pages
+
+<div class="InventaireContainer">
+@foreach (var item in ListInventaire)
+{
+    <img src="@item" class="ImageInventaire"/> 
+<br/>
+}
+
+@code {
+    [Parameter] public List<string> ListInventaire { get; set; } = new List<string>{}; // Liste reçue de Map.razor
+}
+</div>

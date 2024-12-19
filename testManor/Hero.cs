@@ -10,6 +10,7 @@ public class Heros(string name, int positionX, int positionY)
 
     protected int? Life { get; set; }
     protected int? Damage { get; set; }
+        
     protected int? Armor { get; set; }
 
 
