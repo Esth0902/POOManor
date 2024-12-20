@@ -1,7 +1,8 @@
-﻿@using testManor.Pages
+﻿@using System.ComponentModel.Design
+@using testManor.Pages
 
 <div class="gestionvie">
-    <p><img src="images/HeroF.png" class="Personnage" />&nbsp; &nbsp; &nbsp; &nbsp;Point de vie :&nbsp; &nbsp; &nbsp; &nbsp;Point de dégat :&nbsp; &nbsp; &nbsp; &nbsp;Point de défense : </p>
+    <p><img src="" class="Personnage" /> &nbsp; &nbsp; &nbsp; &nbsp; Nom :  &nbsp; &nbsp; &nbsp; &nbsp;Point de vie :  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : &nbsp; &nbsp; &nbsp; &nbsp;Point de défense :  </p>
 </div>
 
 <div @ref="mapElement" @onkeydown="HandleKeyDown" tabindex="0" class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
@@ -41,9 +42,11 @@
     }
 </div>
 
+<Inventaire ListInventaire="ListInventaire" />
+
 
 @code {
-
+    
 [Parameter]
 public string CurrentFloorImage { get; set; }
 [Parameter]
@@ -140,7 +143,6 @@ private void SelectRandomTreasure()
         TresorTexte = $"Vous avez trouvé {item.Nom} !";
     }
 }
-
 
 public async Task MoveMonsters()
 {

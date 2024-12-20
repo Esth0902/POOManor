@@ -2,13 +2,14 @@
 @using testManor.Pages
 
 <div class="InventaireContainer">
-@foreach (var item in ListInventaire)
-{
-    <img src="@item" class="ImageInventaire"/> 
-<br/>
-}
+    @foreach (var item in ListInventaire)
+    {
+        <img src="@item" class="ImageInventaire"/> 
+        <br/>
+    }
 
-@code {
-    [Parameter] public List<string> ListInventaire { get; set; } = new List<string>{}; // Liste reçue de Map.razor
-}
+    @code {
+        //[Parameter] public List<string> ListInventaire { get; set; } = new List<string>{}; // Liste reçue de Map.razor
+        public List<string> ListInventaire { get; set; } = new List<string>{"images/hammer.png"};
+    }
 </div>

@@ -77,8 +77,6 @@
     font-weight: bold;
 }
 
-
-
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;
