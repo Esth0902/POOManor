@@ -74,6 +74,7 @@ public int PlayerPositionY { get; set; } // position initiale du héros
 [Parameter]
     public int CoffrePositionY { get; set; }
 [Parameter]
+public int Etage { get; set; }
 
 //class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
 public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
@@ -114,7 +115,22 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         TresorTrouve = true;
         SelectRandomTreasure();
     }
-    
+    if (Etage == 0 && PlayerPositionX == 9 && PlayerPositionY == 5)
+    {
+        nav.NavigateTo("Map1E");
+    }
+    if (Etage == 1 && PlayerPositionX == 9 && PlayerPositionY == 5)
+    {
+        nav.NavigateTo("MapRDC");
+    }
+    if (Etage == 1 && PlayerPositionX == 0 && PlayerPositionY == 0)
+    {
+        nav.NavigateTo("MapGrenier");
+    }
+    if (Etage == 2 && PlayerPositionX == 0 && PlayerPositionY == 0)
+    {
+        nav.NavigateTo("Map1E");
+    }
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
