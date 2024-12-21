@@ -1,4 +1,7 @@
 ﻿@page "/ChoixPersonnage"
+@using testManor.Pages.Services
+@inject HeroService HeroService
+
 
 <div class="perso-page">
 
@@ -56,8 +59,7 @@
 
     public void EntrerJeu()
     {
-      MonPerso = new MonHero(NomJoueur, ImagePerso, 0, 100, 0);
-      
+        HeroService.MonHero = new MonHero(NomJoueur, ImagePerso, 0, 100, 0);
     }
     
 }

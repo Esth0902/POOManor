@@ -1,8 +1,11 @@
 ﻿@using System.ComponentModel.Design
 @using testManor.Pages
+@using testManor.Pages.Services
+@inject HeroService HeroService
+
 
 <div class="gestionvie">
-    <p><img src="" class="Personnage" /> &nbsp; &nbsp; &nbsp; &nbsp; Nom :  &nbsp; &nbsp; &nbsp; &nbsp;Point de vie :  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : &nbsp; &nbsp; &nbsp; &nbsp;Point de défense :  </p>
+    <p><img src="@HeroService.MonHero.Image" class="Personnage" /> &nbsp; &nbsp; &nbsp; &nbsp; Nom : @HeroService.MonHero.Nom &nbsp; &nbsp; &nbsp; &nbsp;Point de vie : @HeroService.MonHero.Life  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : @HeroService.MonHero.Damage &nbsp; &nbsp; &nbsp; &nbsp;Point de défense : @HeroService.MonHero.Armor    </p>
 </div>
 
 <div @ref="mapElement" @onkeydown="HandleKeyDown" tabindex="0" class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
