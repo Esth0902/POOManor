@@ -1,15 +1,23 @@
 ﻿@using System.ComponentModel.DataAnnotations
 @using testManor.Pages
+@using testManor.Pages.Services
+@inject HeroService HeroService  
+
 
 <div class="InventaireContainer">
-    @foreach (var item in ListInventaire)
-    {
-        <img src="@item" class="ImageInventaire"/> 
-        <br/>
-    }
+        
+        @foreach (var item in HeroService.ListInventaire)
+        {
+            <img src="@item" class="ImageInventaire"/>
+            <br/>
+            
+        }
 
-    @code {
-        //[Parameter] public List<string> ListInventaire { get; set; } = new List<string>{}; // Liste reçue de Map.razor
-        public List<string> ListInventaire { get; set; } = new List<string>{"images/hammer.png"};
+        @code {
+            
+            protected override void OnInitialized()
+            {
+                HeroService.OnChange += StateHasChanged;
+            }
     }
 </div>

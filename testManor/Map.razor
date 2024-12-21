@@ -2,6 +2,7 @@
 @using testManor.Pages
 @using testManor.Pages.Services
 @inject HeroService HeroService
+
 <div class="gestionvie">
     <p><img src="@HeroService.MonHero.Image" class="Personnage" /> &nbsp; &nbsp; &nbsp; &nbsp; Nom : @HeroService.MonHero.Nom &nbsp; &nbsp; &nbsp; &nbsp;Point de vie : @HeroService.MonHero.Life  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : @HeroService.MonHero.Damage &nbsp; &nbsp; &nbsp; &nbsp;Point de défense : @HeroService.MonHero.Armor    </p>
 </div>
@@ -22,9 +23,9 @@
         {
             <img src="images/coffre.png" class="coffreimage"/>
         }
-        else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche l'image aléatoire si le trésor est trouvé
+        else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche coffre ouvert si le trésor est trouvé
         {
-        <img src="@TresorImage" class="TresorImage" />
+        <img src="images/coffre_ouvert.png" class="coffreimage" />
         }
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
@@ -47,9 +48,6 @@
     <p>@TresorTexte</p>
     }
 </div>
-
-<Inventaire ListInventaire="ListInventaire" />
-
 
 @code {
     
@@ -122,8 +120,6 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
-public List<string> ListInventaire { get; set; } = new List<string>{"images/hammer.png"};
-
 private void SelectRandomTreasure()
 {
     Coffre monCoffre = new Coffre();
@@ -131,25 +127,29 @@ private void SelectRandomTreasure()
 
     if (objetAleatoire is Armure armure)
     {
-        if (!ListInventaire.Contains(armure.Image)) ListInventaire.Add(armure.Image);
+        if (!HeroService.ListInventaire.Contains(armure.Image))  HeroService.AddNotif(armure.Image) ;
         TresorTexte = $"Vous avez trouvé {armure.Nom} qui vous procure {armure.PointDefense} point(s) de défense supplémentaire !";
+        HeroService.MonHero.Armor += armure.PointDefense;
+
     }
     else if (objetAleatoire is Arme arme)
     {
-        if (!ListInventaire.Contains(arme.Image)) ListInventaire.Add(arme.Image);
+        if (!HeroService.ListInventaire.Contains(arme.Image))  HeroService.AddNotif(arme.Image);
         TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
-
+        HeroService.MonHero.Damage += arme.Pointdegats;
     }
     else if (objetAleatoire is Potion potions)
     {
-        if (!ListInventaire.Contains(potions.Image)) ListInventaire.Add(potions.Image);
+        if (!HeroService.ListInventaire.Contains(potions.Image)) HeroService.AddNotif(potions.Image);
         TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
+        HeroService.MonHero.Life += potions.Pointdevie;
     }
     else if (objetAleatoire is Item item)
     {
-        if (!ListInventaire.Contains(item.Image)) ListInventaire.Add(item.Image);
+        if (!HeroService.ListInventaire.Contains(item.Image))  HeroService.AddNotif(item.Image);
         TresorTexte = $"Vous avez trouvé {item.Nom} !";
     }
+ 
 }
 
 public async Task MoveMonsters()
