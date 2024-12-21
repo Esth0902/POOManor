@@ -14,4 +14,5 @@
         Life = life;
         Armor = armor;
     }
+    
 }
