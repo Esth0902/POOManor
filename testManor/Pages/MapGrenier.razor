@@ -4,12 +4,15 @@
     <Map CurrentFloorImage=images/MapGrenier.png 
          CurrentMap="mapGrenier" 
          Row="5" 
-         Column="10" 
+         Column="10"
          MonstersList="@GrenierMonsters" 
          Zones="@GrenierZones" 
          Doors="@GrenierDoors"
+         Stairs="@Stairs"
          PlayerPositionX="1"
-         PlayerPositionY="1"/>
+         PlayerPositionY="1"
+         CoffrePositionX="4"
+         CoffrePositionY="3"/>
 </div>
 
 @code {
@@ -25,5 +28,10 @@
 
     private List<Door> GrenierDoors = new List<Door>
     {
+    };
+
+    private List<Stair> Stairs = new List<Stair>
+    {
+        new Stair(0,0),
     };
 }

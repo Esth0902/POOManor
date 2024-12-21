@@ -9,12 +9,12 @@
          MonstersList="@RDCMonsters" 
          Zones="@RDCZones" 
          Doors="@RDCDoors" 
+         Stairs="@Stairs"
          PlayerPositionX="4"
          PlayerPositionY="7"
          CoffrePositionX="7"
          CoffrePositionY="3"
-         StairsPositionX="9"
-         StairsPositionY="5"/>
+         />
 </div>
 
 @code {
@@ -38,6 +38,9 @@
         new Door((4, 11), (5, 11)), // Porte entre Zone 3 et Zone 4
         new Door((7,9), (7, 10)),
         new Door((2,9), (2,10))
-        
+    };
+    private List<Stair> Stairs = new List<Stair>
+    {
+        new Stair(9,5)
     };
 }

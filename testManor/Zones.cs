@@ -32,3 +32,16 @@ public class Door
         Position2 = position2;
     }
 }
+
+public class Stair
+{
+    public int PositionX { get; set; } // Colonne
+    public int PositionY { get; set; } // Ligne
+    public virtual string Image { get; }
+
+    public Stair(int positionX, int positionY)
+    {
+        PositionX = positionX;
+        PositionY = positionY;
+    }
+}

@@ -29,9 +29,9 @@
         {
         <img src="images/HeroF.png" class="hero"/>
         }
-        else if (row == StairsPositionY && col == StairsPositionX) // Affiche l'image des escaliers
+        else if (Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
         {
-        <img src="images/Stairs1.png" class="StairsImage" />
+        <img src="images/stairs1.png" class="StairsImage"/>
         }
     </div>
     
@@ -63,7 +63,9 @@ public List<Monsters> MonstersList { get; set; }
 public List<Zone> Zones { get; set; } // initialisation de la liste des zones
 [Parameter]
 public List<Door> Doors { get; set; } // initialisation de la liste des portes
-[Parameter] 
+[Parameter]
+public List<Stair> Stairs { get; set; } // initialisation de la liste des escaliers
+[Parameter]
 public int PlayerPositionX { get; set; }// position initiale du héros
 [Parameter]
 public int PlayerPositionY { get; set; } // position initiale du héros
@@ -71,19 +73,12 @@ public int PlayerPositionY { get; set; } // position initiale du héros
     public int CoffrePositionX { get; set; }
 [Parameter]
     public int CoffrePositionY { get; set; }
-
-[Parameter] 
-public int StairsPositionX { get; set; }
 [Parameter]
-public int StairsPositionY { get; set; }
+
 //class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
-
-
-private bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
+public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
 private string TresorTexte { get; set; } // Texte du trésor
-
-private string StairsImage { get; set; } // Image Escaliers
 public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
 
 private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
@@ -119,10 +114,12 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         TresorTrouve = true;
         SelectRandomTreasure();
     }
-    if (PlayerPositionX == StairsPositionX && PlayerPositionY == StairsPositionY)
+
+    if (Stairs.Any(s => s.PositionX == PlayerPositionX && s.PositionY == PlayerPositionY))
     {
         nav.NavigateTo("/Map1E");
     }
+    
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
@@ -153,7 +150,6 @@ private void SelectRandomTreasure()
         TresorTexte = $"Vous avez trouvé {item.Nom} !";
     }
 }
-
 
 public async Task MoveMonsters()
 {
@@ -207,10 +203,14 @@ public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetC
 
     if (currentZone == targetZone)
         return true;
+    
+    
 
 // Vérifier si le déplacement passe par une porte
     return Doors.Any(d =>
     (d.Position1 == (currentRow, currentCol) && d.Position2 == (targetRow, targetCol)) ||
     (d.Position2 == (currentRow, currentCol) && d.Position1 == (targetRow, targetCol)));
 }
+
+
 }
