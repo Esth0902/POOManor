@@ -131,6 +131,10 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     {
         nav.NavigateTo("Map1E");
     }
+    if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
+            {
+                nav.NavigateTo("MapCombat");
+            }
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
