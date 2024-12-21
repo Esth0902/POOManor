@@ -130,6 +130,8 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     if (Etage == 2 && PlayerPositionX == 0 && PlayerPositionY == 0)
     {
         nav.NavigateTo("Map1E");
+        PlayerPositionX = 0;
+        PlayerPositionY = 1;
     }
     if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
             {
@@ -188,6 +190,10 @@ public async Task MoveMonsters()
             {
                 monster.PositionY = newRow;
                 monster.PositionX = newCol;
+            }
+            if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY)
+            {
+                nav.NavigateTo("MapCombat");
             }
         }
 
