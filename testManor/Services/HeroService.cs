@@ -6,7 +6,7 @@ public class HeroService
 {
    public MonHero MonHero { get; set; }
    
-   public List<string> ListInventaire { get; set; } = ["images/hammer.png"];
+   public List<string> ListInventaire { get; set; } = [];
    public event Action? OnChange;
 
    public void AddNotif(string item)

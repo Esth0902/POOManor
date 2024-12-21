@@ -122,17 +122,20 @@ private void SelectRandomTreasure()
     {
         if (!HeroService.ListInventaire.Contains(armure.Image))  HeroService.AddNotif(armure.Image) ;
         TresorTexte = $"Vous avez trouvé {armure.Nom} qui vous procure {armure.PointDefense} point(s) de défense supplémentaire !";
+        HeroService.MonHero.Armor += armure.PointDefense;
+
     }
     else if (objetAleatoire is Arme arme)
     {
         if (!HeroService.ListInventaire.Contains(arme.Image))  HeroService.AddNotif(arme.Image);
         TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
-
+        HeroService.MonHero.Damage += arme.Pointdegats;
     }
     else if (objetAleatoire is Potion potions)
     {
         if (!HeroService.ListInventaire.Contains(potions.Image)) HeroService.AddNotif(potions.Image);
         TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
+        HeroService.MonHero.Life += potions.Pointdevie;
     }
     else if (objetAleatoire is Item item)
     {
