@@ -114,11 +114,6 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         TresorTrouve = true;
         SelectRandomTreasure();
     }
-
-    if (Stairs.Any(s => s.PositionX == PlayerPositionX && s.PositionY == PlayerPositionY))
-    {
-        nav.NavigateTo("/Map1E");
-    }
     
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
