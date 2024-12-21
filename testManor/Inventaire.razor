@@ -13,6 +13,11 @@
             
         }
 
-    @code {
+        @code {
+            
+            protected override void OnInitialized()
+            {
+                HeroService.OnChange += StateHasChanged;
+            }
     }
 </div>

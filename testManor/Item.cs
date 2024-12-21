@@ -15,7 +15,7 @@ public class Item
     {
         return new List<Item>
         {
-            new Item("des planches", "images/planches.png"),
+            new Item("des planches", "images/planche.png"),
             new Item("des vis", "images/vis.png"),
             new Item("une visseuse", "images/visseuse.png"),
         };
