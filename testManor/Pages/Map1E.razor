@@ -5,10 +5,11 @@
     <Map CurrentFloorImage=images/1Etage.png 
          CurrentMap="map" 
          Row="10" 
-         Column="20" 
-         MonstersList="@Monsters" 
-         Zones="@Zones" 
-         Doors="@Doors"
+         Column="20"
+         MonstersList="@RDCMonsters" 
+         Zones="@RDCZones" 
+         Doors="@RDCDoors"
+         Stairs="@Stairs"
         PlayerPositionX="4"
         PlayerPositionY="7"
         CoffrePositionX="7"
@@ -36,6 +37,11 @@
         new Door((7,9), (7, 10)),
         new Door((2,9), (2,10))
         
+    };
+    private List<Stair> Stairs = new List<Stair>
+    {
+        new Stair(9,5),
+        new Stair(0,0)
     };
 }
 

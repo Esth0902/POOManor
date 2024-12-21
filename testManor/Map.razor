@@ -2,8 +2,6 @@
 @using testManor.Pages
 @using testManor.Pages.Services
 @inject HeroService HeroService
-
-
 <div class="gestionvie">
     <p><img src="@HeroService.MonHero.Image" class="Personnage" /> &nbsp; &nbsp; &nbsp; &nbsp; Nom : @HeroService.MonHero.Nom &nbsp; &nbsp; &nbsp; &nbsp;Point de vie : @HeroService.MonHero.Life  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : @HeroService.MonHero.Damage &nbsp; &nbsp; &nbsp; &nbsp;Point de défense : @HeroService.MonHero.Armor    </p>
 </div>
@@ -31,6 +29,11 @@
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
         <img src="@HeroService.MonHero.Image" class="hero"/>
+        }
+        }
+        else if (Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
+        {
+        <img src="images/stairs1.png" class="StairsImage"/>
         }
     </div>
     
@@ -64,7 +67,9 @@ public List<Monsters> MonstersList { get; set; }
 public List<Zone> Zones { get; set; } // initialisation de la liste des zones
 [Parameter]
 public List<Door> Doors { get; set; } // initialisation de la liste des portes
-[Parameter] 
+[Parameter]
+public List<Stair> Stairs { get; set; } // initialisation de la liste des escaliers
+[Parameter]
 public int PlayerPositionX { get; set; }// position initiale du héros
 [Parameter]
 public int PlayerPositionY { get; set; } // position initiale du héros
@@ -72,12 +77,12 @@ public int PlayerPositionY { get; set; } // position initiale du héros
     public int CoffrePositionX { get; set; }
 [Parameter]
     public int CoffrePositionY { get; set; }
-//class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
+[Parameter]
 
-private bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
+//class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
+public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
 private string TresorTexte { get; set; } // Texte du trésor
-
 public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
 
 private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
@@ -201,6 +206,8 @@ public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetC
 
     if (currentZone == targetZone)
         return true;
+    
+    
 
 // Vérifier si le déplacement passe par une porte
     return Doors.Any(d =>
