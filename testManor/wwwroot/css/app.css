@@ -105,5 +105,17 @@ html, body {
         color: #c02d76;
     }
 
+}
 
+.InventaireContainer {
+    display: flex;
+    flex-wrap: wrap; /* Les images reviennent à la ligne */
+    justify-content: center; /* Centrer le contenu */
+    gap: 2px; /* Espacement horizontal et vertical entre les images */
+}
 
+.ImageInventaire {
+    width: 30%; /* Ajuster la taille des images */
+    height: auto;
+    margin:0;
+}

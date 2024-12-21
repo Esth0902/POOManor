@@ -1,4 +1,7 @@
 ﻿@page "/ChoixPersonnage"
+@using testManor.Pages.Services
+@inject HeroService HeroService
+
 
 <div class="perso-page">
 
@@ -12,32 +15,51 @@
    
     <div class="ChoixPersonnage"> </div>
     <label>
-        <input type="radio" name="Personnage" value="Femme"> 
-        <img src="images/HeroF.png" alt="Homme" class="ChoixPersonnageImage"> Une voleuse
+        <input type="radio" name="Personnage" value="Femme" @onchange="MAJPerso"> 
+        <img src="images/HeroF.png" alt="Femme" class="ChoixPersonnageImage"> Une voleuse
     </label><br>
     <label>
-        <input type="radio" name="Personnage" value="Hommme"> 
+        <input type="radio" name="Personnage" value="Hommme" @onchange="MAJPerso"> 
         <img src="images/HeroM.png" alt="Homme" class="ChoixPersonnageImage"> Un voleur
     </label><br>
 
     <form method="post"> 
         <div class="form"> 
             <label for="Name">Entre un nom :</label> 
-            <input type="text" class="form-control" id="Name" name="Name" /> 
+            <input type="text" class="form-control" id="Name" @bind="NomJoueur" /> 
         </div> 
     </form>
 
-
-
     <div class="containerbouton">
     
-        <a class="bouton" href="MapRDCE"> Jouons !</a>
+        <a class="bouton" href="MapRDCE" @onclick="EntrerJeu"> Jouons !</a>
     </div>
-
     </div>
 
 
  
 @code {
+    public string NomJoueur { get; set; }
+    public string ChoixPerso { get; set; }
+    public string ImagePerso { get; set; }
+    public MonHero MonPerso { get; set; }
+
+    public void MAJPerso(ChangeEventArgs e)
+    {
+        ChoixPerso = e.Value.ToString();
+
+        if (ChoixPerso == "Femme")
+        {
+            ImagePerso = "images/HeroF.png";
+        }
+
+        else
+            ImagePerso = "images/HeroM.png";
+    }
+
+    public void EntrerJeu()
+    {
+        HeroService.MonHero = new MonHero(NomJoueur, ImagePerso, 0, 100, 0);
+    }
     
 }
