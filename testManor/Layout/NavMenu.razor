@@ -1,4 +1,7 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using testManor.Pages.Services
+@inject HeroService HeroService 
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">POO Manor</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -16,7 +19,9 @@
         </div>
     </nav>
     <div class="Inventaire">
-        Ton inventaire
+        Mon inventaire
+        <Inventaire/>
+
     </div>
 </div>
 
@@ -28,6 +33,11 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override void OnInitialized()
+    {
+        HeroService.OnChange += StateHasChanged;
     }
 
 }

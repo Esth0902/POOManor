@@ -1,0 +1,30 @@
+﻿@page "/mapJardin"
+
+<div>
+    <Map CurrentFloorImage=images/jardin.png 
+         CurrentMap="map" 
+         Row="10" 
+         Column="20" 
+         MonstersList="@JardinMonsters" 
+         Zones="@JardinZones" 
+         Doors="@JardinDoors"
+         PlayerPositionX="1"
+         PlayerPositionY="1"/>
+</div>
+
+@code {
+    private List<Monsters> JardinMonsters = new List<Monsters>
+    {
+        new Zombie("zombie1", 3,4),
+        new Ghost("ghost1", 1,3 )
+    };
+
+    private List<Zone> JardinZones = new List<Zone>
+    {
+        new Zone(0, 9, 0, 19),
+    };
+
+    private List<Door> JardinDoors = new List<Door>
+    {
+    };
+}
