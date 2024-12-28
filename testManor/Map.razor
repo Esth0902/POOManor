@@ -1,6 +1,7 @@
 ﻿@using System.ComponentModel.Design
 @using testManor.Pages
 @using testManor.Pages.Services
+@inject NavigationManager nav
 @inject HeroService HeroService
 
 <div class="gestionvie">
@@ -67,6 +68,8 @@ public List<Door> Doors { get; set; } // initialisation de la liste des portes
 [Parameter]
 public List<Stair> Stairs { get; set; } // initialisation de la liste des escaliers
 [Parameter]
+public int Etage { get; set; }
+[Parameter]
 public int PlayerPositionX { get; set; }// position initiale du héros
 [Parameter]
 public int PlayerPositionY { get; set; } // position initiale du héros
@@ -115,7 +118,26 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         TresorTrouve = true;
         SelectRandomTreasure();
     }
-    
+    if (Etage == 0 && PlayerPositionX == 9 && PlayerPositionY == 5)
+    {
+        nav.NavigateTo("Map1E");
+    }
+    if (Etage == 1 && PlayerPositionX == 9 && PlayerPositionY == 5)
+    {
+        nav.NavigateTo("MapRDC");
+    }
+    if (Etage == 1 && PlayerPositionX == 0 && PlayerPositionY == 0)
+    {
+        nav.NavigateTo("MapGrenier");
+    }
+    if (Etage == 2 && PlayerPositionX == 0 && PlayerPositionY == 0)
+    {
+        nav.NavigateTo("Map1E");
+    }
+    if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
+            {
+                nav.NavigateTo("MapCombat");
+            }
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
