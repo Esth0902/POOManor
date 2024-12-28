@@ -1,11 +1,14 @@
-﻿@using testManor.Pages
+﻿@using System.ComponentModel.Design
+@using testManor.Pages
+@using testManor.Pages.Services
 @inject NavigationManager nav
+@inject HeroService HeroService
 
 <div class="gestionvie">
-    <p><img src="images/HeroF.png" class="Personnage" />&nbsp; &nbsp; &nbsp; &nbsp;Point de vie :&nbsp; &nbsp; &nbsp; &nbsp;Point de dégat :&nbsp; &nbsp; &nbsp; &nbsp;Point de défense : </p>
+    <p><img src="@HeroService.MonHero.Image" class="Personnage" /> &nbsp; &nbsp; &nbsp; &nbsp; Nom : @HeroService.MonHero.Nom &nbsp; &nbsp; &nbsp; &nbsp;Point de vie : @HeroService.MonHero.Life  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : @HeroService.MonHero.Damage &nbsp; &nbsp; &nbsp; &nbsp;Point de défense : @HeroService.MonHero.Armor    </p>
 </div>
 
-<div @onkeydown="HandleKeyDown" tabindex="0" class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
+<div @ref="mapElement" @onkeydown="HandleKeyDown" tabindex="0" class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
     @for (int row = 0; row < Row; row++)
     {
         @for (int col = 0; col < Column; col++)
@@ -21,13 +24,13 @@
         {
             <img src="images/coffre.png" class="coffreimage"/>
         }
-        else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche l'image aléatoire si le trésor est trouvé
+        else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche coffre ouvert si le trésor est trouvé
         {
-        <img src="@TresorImage" class="TresorImage" />
+        <img src="images/coffre_ouvert.png" class="coffreimage" />
         }
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
-        <img src="images/HeroF.png" class="hero"/>
+        <img src="@HeroService.MonHero.Image" class="hero"/>
         }
         else if (Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
         {
@@ -46,9 +49,8 @@
     }
 </div>
 
-
 @code {
-
+    
 [Parameter]
 public string CurrentFloorImage { get; set; }
 [Parameter]
@@ -66,13 +68,15 @@ public List<Door> Doors { get; set; } // initialisation de la liste des portes
 [Parameter]
 public List<Stair> Stairs { get; set; } // initialisation de la liste des escaliers
 [Parameter]
+public int Etage { get; set; }
+[Parameter]
 public int PlayerPositionX { get; set; }// position initiale du héros
 [Parameter]
 public int PlayerPositionY { get; set; } // position initiale du héros
 [Parameter] 
-    public int CoffrePositionX { get; set; }
+public int CoffrePositionX { get; set; }
 [Parameter]
-    public int CoffrePositionY { get; set; }
+public int CoffrePositionY { get; set; }
 [Parameter]
 public int Etage { get; set; }
 
@@ -130,8 +134,6 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     if (Etage == 2 && PlayerPositionX == 0 && PlayerPositionY == 0)
     {
         nav.NavigateTo("Map1E");
-        PlayerPositionX = 0;
-        PlayerPositionY = 1;
     }
     if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
             {
@@ -147,25 +149,29 @@ private void SelectRandomTreasure()
 
     if (objetAleatoire is Armure armure)
     {
-        TresorImage = armure.Image;
+        if (!HeroService.ListInventaire.Contains(armure.Image))  HeroService.AddNotif(armure.Image) ;
         TresorTexte = $"Vous avez trouvé {armure.Nom} qui vous procure {armure.PointDefense} point(s) de défense supplémentaire !";
+        HeroService.MonHero.Armor += armure.PointDefense;
+
     }
     else if (objetAleatoire is Arme arme)
     {
-        TresorImage = arme.Image;
+        if (!HeroService.ListInventaire.Contains(arme.Image))  HeroService.AddNotif(arme.Image);
         TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
-
+        HeroService.MonHero.Damage += arme.Pointdegats;
     }
     else if (objetAleatoire is Potion potions)
     {
-        TresorImage = potions.Image;
+        if (!HeroService.ListInventaire.Contains(potions.Image)) HeroService.AddNotif(potions.Image);
         TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
+        HeroService.MonHero.Life += potions.Pointdevie;
     }
     else if (objetAleatoire is Item item)
     {
-        TresorImage = item.Image;
+        if (!HeroService.ListInventaire.Contains(item.Image))  HeroService.AddNotif(item.Image);
         TresorTexte = $"Vous avez trouvé {item.Nom} !";
     }
+ 
 }
 
 public async Task MoveMonsters()
@@ -201,11 +207,13 @@ public async Task MoveMonsters()
     await Task.Delay(2000);
     }
 }
+private ElementReference mapElement; // Référence à l'élément de la carte
 
 protected override async Task OnAfterRenderAsync(bool firstRender)
 {
     if (firstRender)
     {
+        await mapElement.FocusAsync();
         await MoveMonsters();
     }
 }
@@ -232,6 +240,5 @@ public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetC
     (d.Position1 == (currentRow, currentCol) && d.Position2 == (targetRow, targetCol)) ||
     (d.Position2 == (currentRow, currentCol) && d.Position1 == (targetRow, targetCol)));
 }
-
 
 }
