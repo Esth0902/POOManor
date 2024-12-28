@@ -1,28 +1,28 @@
 ﻿@page "/Map1E"
 
 <div>
-    <h1>1er étage</h1>
     <Map CurrentFloorImage=images/1Etage.png 
-         CurrentMap="map" 
-         Row="10" 
-         Column="20"
-         MonstersList="@RDCMonsters" 
-         Zones="@RDCZones" 
-         Doors="@RDCDoors"
-         Stairs="@Stairs"
+        CurrentMap="map" 
+        Row="10" 
+        Column="20"
+        MonstersList="@PEMonsters"
+        Zones="@PEZones"
+        Doors="@PEDoors"
+        Stairs="@Stairs"
         PlayerPositionX="4"
         PlayerPositionY="7"
         CoffrePositionX="7"
-        CoffrePositionY="3"/>
+        CoffrePositionY="3"
+        />
 </div>
 
 @code {
-    private List<Monsters> Monsters = new List<Monsters>
+    private List<Monsters> PEMonsters = new List<Monsters>
     {
         new Ghost("Ghost1", 2, 8),
     };
     
-    private List<Zone> Zones = new List<Zone>
+    private List<Zone> PEZones = new List<Zone>
     {
         new Zone(0, 4, 0, 9), // Zone 1
         new Zone(5, 9, 0, 9), // Zone 2
@@ -30,7 +30,7 @@
         new Zone(5, 9, 10, 19) // Zone 4
     };
 
-    private List<Door> Doors = new List<Door>
+    private List<Door> PEDoors = new List<Door>
     {
         new Door((4, 3), (5, 3)), // Porte entre Zone 1 et Zone 2
         new Door((4, 11), (5, 11)), // Porte entre Zone 3 et Zone 4

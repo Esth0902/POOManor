@@ -31,7 +31,6 @@
         {
         <img src="@HeroService.MonHero.Image" class="hero"/>
         }
-        }
         else if (Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
         {
         <img src="images/stairs1.png" class="StairsImage"/>
@@ -72,9 +71,9 @@ public int PlayerPositionX { get; set; }// position initiale du héros
 [Parameter]
 public int PlayerPositionY { get; set; } // position initiale du héros
 [Parameter] 
-    public int CoffrePositionX { get; set; }
+public int CoffrePositionX { get; set; }
 [Parameter]
-    public int CoffrePositionY { get; set; }
+public int CoffrePositionY { get; set; }
 [Parameter]
 
 //class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
