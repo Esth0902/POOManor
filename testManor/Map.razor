@@ -196,6 +196,10 @@ public async Task MoveMonsters()
                 monster.PositionY = newRow;
                 monster.PositionX = newCol;
             }
+            if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY)
+            {
+                nav.NavigateTo("MapCombat");
+            }
         }
 
     StateHasChanged();
