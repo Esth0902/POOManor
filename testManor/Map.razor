@@ -136,7 +136,7 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     }
     if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
             {
-                nav.NavigateTo("MapCombat");
+                nav.NavigateTo("FightMapRDC");
             }
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
@@ -198,7 +198,7 @@ public async Task MoveMonsters()
             }
             if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY)
             {
-                nav.NavigateTo("MapCombat");
+                nav.NavigateTo("FightMapRDC");
             }
         }
 
