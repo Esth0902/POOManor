@@ -89,29 +89,33 @@ public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été
 private string TresorImage { get; set; } // Image aléatoire du trésor
 private string TresorTexte { get; set; } // Texte du trésor
 public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
+private fight? CurrentFight;
 
 private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
 {
     int newPlayerRow = PlayerPositionY, newPlayerCol = PlayerPositionX;
-    switch (e.Key)
     {
-        case "ArrowUp":
-            newPlayerRow = PlayerPositionY-1; // Haut
-            //if (PlayerPositionY > 0) PlayerPositionY--;
-            break;
-        case "ArrowDown":
-            newPlayerRow = PlayerPositionY+1;
-            //if (PlayerPositionY < 9) PlayerPositionY++;
-            break;
-        case "ArrowLeft":
-            newPlayerCol = PlayerPositionX-1;
-            //if (PlayerPositionX > 0) PlayerPositionX--;
-            break;
-        case "ArrowRight":
-            newPlayerCol = PlayerPositionX+1;
-            //if (PlayerPositionX < 19) PlayerPositionX++;
-            break;
+        switch (e.Key)
+        {
+            case "ArrowUp":
+                newPlayerRow = PlayerPositionY - 1; // Haut
+                //if (PlayerPositionY > 0) PlayerPositionY--;
+                break;
+            case "ArrowDown":
+                newPlayerRow = PlayerPositionY + 1;
+                //if (PlayerPositionY < 9) PlayerPositionY++;
+                break;
+            case "ArrowLeft":
+                newPlayerCol = PlayerPositionX - 1;
+                //if (PlayerPositionX > 0) PlayerPositionX--;
+                break;
+            case "ArrowRight":
+                newPlayerCol = PlayerPositionX + 1;
+                //if (PlayerPositionX < 19) PlayerPositionX++;
+                break;
+        }
     }
+
     if (CanMoveTo(PlayerPositionY, PlayerPositionX, newPlayerRow, newPlayerCol))
     {
         PlayerPositionY = newPlayerRow;
@@ -144,10 +148,18 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     {
         nav.NavigateTo("Mapjardin");
     }
+
     if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
-            {
-                nav.NavigateTo("MapCombat");
-            }
+    {
+        var monster = MonstersList.First(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive());
+        CurrentFight = new fight(HeroService.MonHero, monster);
+        CurrentFight.Start(); // Lancer le combat
+        if (CurrentFight.IsFightOver)
+        {
+            StopMoving = false;
+        }
+    }
+
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }
 
@@ -227,10 +239,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
     }
 }
 
-public void StopMovement() //pour arrêter les déplacements des monstres
-{
-StopMoving = true;
-}
+
 
 public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetCol)
 {

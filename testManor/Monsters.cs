@@ -7,8 +7,8 @@ public class Monsters
     public int PositionY { get; set; } // Ligne
     public virtual string Image { get; }
 
-    protected int Life { get; set; }
-    protected int Damage { get; set; }
+    protected internal int Life { get; set; }
+    protected internal int Damage { get; set; }
     
 
     public Monsters(string name, int positionX, int positionY)
@@ -16,11 +16,6 @@ public class Monsters
         Name = name;
         PositionX = positionX;
         PositionY = positionY;
-    }
-
-    public void Attacked(int damage)
-    {
-        Life -= damage;
     }
 
     public bool Alive()
@@ -36,7 +31,7 @@ public class Zombie : Monsters
     
     public Zombie(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
-        Life = 2;
+        Life = 10;
         Damage = 1;
     }
 }
@@ -47,7 +42,7 @@ public class Ghost : Monsters
     
     public Ghost(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
-        Life = 3;
+        Life = 10;
         Damage = 2;
     }
 }
@@ -58,7 +53,7 @@ public class Werewolf : Monsters
     
     public Werewolf(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
-        Life = 10;
+        Life = 30;
         Damage = 5;
     }
 }
