@@ -9,10 +9,12 @@
     box-shadow: inset 0px 0px 50px 26px #122027;
     border: 9px solid rgba(18,32,39,0.54);
     border-radius: 9px;
+    padding-left: 1cm;
 }
 
 .hometitre {
-    text-align: right;
+    text-align: left;
+    margin-left: 0.5cm;
 }
 
 .ChoixPersonnageImage {
