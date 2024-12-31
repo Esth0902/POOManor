@@ -45,3 +45,16 @@ public class Stair
         PositionY = positionY;
     }
 }
+
+public class Exit
+{
+    public int PositionX { get; set; } // Colonne
+    public int PositionY { get; set; } // Ligne
+    public virtual string Image { get; }
+
+    public Exit(int positionX, int positionY)
+    {
+        PositionX = positionX;
+        PositionY = positionY;
+    }
+}

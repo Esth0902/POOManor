@@ -6,10 +6,16 @@
          Row="10" 
          Column="20" 
          MonstersList="@JardinMonsters" 
-         Zones="@JardinZones" 
+         Zones="@JardinZones"
          Doors="@JardinDoors"
          PlayerPositionX="1"
-         PlayerPositionY="1"/>
+         PlayerPositionY="1"
+         CoffrePositionX="4"
+         CoffrePositionY="3"
+         Etage = "0"
+ 
+         />
+            
 </div>
 
 @code {
@@ -23,8 +29,9 @@
     {
         new Zone(0, 9, 0, 19),
     };
-
     private List<Door> JardinDoors = new List<Door>
     {
     };
+    
+}
 }

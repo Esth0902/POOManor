@@ -1,4 +1,4 @@
-﻿@using System.ComponentModel.Design
+﻿
 @using testManor.Pages
 @using testManor.Pages.Services
 @inject NavigationManager nav
@@ -32,9 +32,13 @@
         {
         <img src="@HeroService.MonHero.Image" class="hero"/>
         }
-        else if (Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
+        else if (Stairs != null && Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
         {
         <img src="images/stairs1.png" class="StairsImage"/>
+        }
+        else if (Exits != null && Exits.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
+        {
+        <img src="images/Exit.png" class="StairsImage"/>
         }
     </div>
     
@@ -52,33 +56,34 @@
 @code {
     
 [Parameter]
-public string CurrentFloorImage { get; set; }
+    public string CurrentFloorImage { get; set; }
 [Parameter]
-public string CurrentMap { get; set; }
+    public string CurrentMap { get; set; }
 [Parameter]
-public int Row { get; set; }
+    public int Row { get; set; }
 [Parameter]
-public int Column { get; set; }
+    public int Column { get; set; }
 [Parameter]
-public List<Monsters> MonstersList { get; set; }
+    public List<Monsters> MonstersList { get; set; }
 [Parameter]
-public List<Zone> Zones { get; set; } // initialisation de la liste des zones
+    public List<Zone> Zones { get; set; } // initialisation de la liste des zones
 [Parameter]
-public List<Door> Doors { get; set; } // initialisation de la liste des portes
+    public List<Door> Doors { get; set; } // initialisation de la liste des portes
 [Parameter]
-public List<Stair> Stairs { get; set; } // initialisation de la liste des escaliers
+    public List<Stair>? Stairs { get; set; } // initialisation de la liste des escaliers
 [Parameter]
-public int Etage { get; set; }
+    public List<Exit>? Exits { get; set; }
 [Parameter]
-public int PlayerPositionX { get; set; }// position initiale du héros
+    public int Etage { get; set; }
 [Parameter]
-public int PlayerPositionY { get; set; } // position initiale du héros
+    public int PlayerPositionX { get; set; }// position initiale du héros
+[Parameter]
+    public int PlayerPositionY { get; set; } // position initiale du héros
 [Parameter] 
-public int CoffrePositionX { get; set; }
+    public int CoffrePositionX { get; set; }
 [Parameter]
-public int CoffrePositionY { get; set; }
-[Parameter]
-
+    public int CoffrePositionY { get; set; }
+    
 //class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
 public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
@@ -133,6 +138,11 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     if (Etage == 2 && PlayerPositionX == 0 && PlayerPositionY == 0)
     {
         nav.NavigateTo("Map1E");
+    }
+
+    if (Etage == 0 && PlayerPositionX == 19 && PlayerPositionY == 9)
+    {
+        nav.NavigateTo("Mapjardin");
     }
     if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
             {
