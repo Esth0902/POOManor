@@ -5,20 +5,18 @@ public class fight
     public MonHero Hero { get; private set; }
     public Monsters Monster { get; private set; }
     public bool IsFightOver { get; private set; } = false;
+    public string text { get; set; }
 
     public fight(MonHero hero, Monsters monster)
     {
-        Hero = hero;  // Correction : assignation correcte des paramètres
+        Hero = hero;
         Monster = monster;
     }
-
     public async void Start()
     {
         while (!IsFightOver)
         {
-            StopMoving = true;
             HeroTurn();
-            await Task.Delay(2000);
             if (IsFightOver) break;
             MonsterTurn();
         }
@@ -32,6 +30,7 @@ public class fight
         if (Monster.Life <= 0)
         {
             IsFightOver = true;
+            text = "vous avez vaincu le monstre !";
         }
     }
 
@@ -44,6 +43,7 @@ public class fight
         if (Hero.Life <= 0)
         {
             IsFightOver = true;
+            text = "le monstre vous a eu !";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+@using System.Net.Mime
 @using testManor.Pages
 @using testManor.Pages.Services
 @inject NavigationManager nav
@@ -154,10 +155,7 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         var monster = MonstersList.First(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive());
         CurrentFight = new fight(HeroService.MonHero, monster);
         CurrentFight.Start(); // Lancer le combat
-        if (CurrentFight.IsFightOver)
-        {
-            StopMoving = false;
-        }
+        TresorTexte = CurrentFight.text;
     }
 
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
@@ -218,9 +216,11 @@ public async Task MoveMonsters()
                 monster.PositionY = newRow;
                 monster.PositionX = newCol;
             }
-            if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY)
+            if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY && monster.Alive())
             {
-                nav.NavigateTo("MapCombat");
+                CurrentFight = new fight(HeroService.MonHero, monster);
+                CurrentFight.Start(); // Lancer le combat
+                TresorTexte = CurrentFight.text;
             }
         }
 
@@ -239,7 +239,10 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
     }
 }
 
-
+public void StopMovement() //pour arrêter les déplacements des monstres
+{
+    StopMoving = true;
+}
 
 public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetCol)
 {
