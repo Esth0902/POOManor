@@ -172,6 +172,7 @@ private void SelectRandomTreasure()
         if (!HeroService.ListInventaire.Contains(potions.Image)) HeroService.AddNotif(potions.Image);
         TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
         HeroService.MonHero.Life += potions.Pointdevie;
+        HeroService.CheckGameOver();
     }
     else if (objetAleatoire is Item item)
     {
