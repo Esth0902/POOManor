@@ -43,7 +43,7 @@
 </div>
 
 <div class="prompt">
-    @if (TresorTrouve)
+    @if (!string.IsNullOrEmpty(TresorTexte))
     {
     <p>@TresorTexte</p>
     }
@@ -82,7 +82,7 @@ public int CoffrePositionY { get; set; }
 //class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
 public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
-private string TresorTexte { get; set; } // Texte du trésor
+private string TresorTexte { get; set; } = ""; // Texte du trésor
 public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
 
 private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
@@ -120,7 +120,14 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
     }
     if (Etage == 0 && PlayerPositionX == 9 && PlayerPositionY == 5)
     {
-        nav.NavigateTo("Map1E");
+        if (ObjetsRequis1ER())
+        {
+            nav.NavigateTo("Map1E");
+        }
+        else
+        {
+            TresorTexte = "Vous ne pouvez pas monter à l'étage car l'escalier n'est pas réparé ! Trouvez des planches, des vis ainsi qu'une visseuse pour le réparer.";
+        }
     }
     if (Etage == 1 && PlayerPositionX == 9 && PlayerPositionY == 5)
     {
@@ -232,12 +239,24 @@ public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetC
     if (currentZone == targetZone)
         return true;
     
-    
-
 // Vérifier si le déplacement passe par une porte
     return Doors.Any(d =>
     (d.Position1 == (currentRow, currentCol) && d.Position2 == (targetRow, targetCol)) ||
     (d.Position2 == (currentRow, currentCol) && d.Position1 == (targetRow, targetCol)));
+}
+
+private bool ObjetsRequis1ER()
+{
+    var objetsrequis1er = new List<string> { "planche.png", "vis.png", "visseuse.png" };
+
+    foreach (var item in objetsrequis1er)
+    {
+        if (!HeroService.ListInventaire.Contains(item))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 }
