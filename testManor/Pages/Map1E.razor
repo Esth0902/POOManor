@@ -12,8 +12,7 @@
          Etage="1"
          PlayerPositionX="4"
          PlayerPositionY="7"
-         CoffrePositionX="7"
-         CoffrePositionY="3"
+         Coffres="@RDCCoffres"
          />
 </div>
 
@@ -43,6 +42,12 @@
     {
         new Stair(9,5),
         new Stair(0,0)
+    };
+    
+    private List<Coffre> RDCCoffres = new List<Coffre>
+    {
+        new Coffre(7, 3),
+        new Coffre(2, 5)
     };
 }
 

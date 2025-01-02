@@ -8,6 +8,7 @@
          MonstersList="@JardinMonsters" 
          Zones="@JardinZones" 
          Doors="@JardinDoors"
+         Coffres="@RDCCoffres"
          PlayerPositionX="1"
          PlayerPositionY="1"/>
 </div>
@@ -26,5 +27,11 @@
 
     private List<Door> JardinDoors = new List<Door>
     {
+    };
+    
+    private List<Coffre> RDCCoffres = new List<Coffre>
+    {
+        new Coffre(7, 3),
+        new Coffre(2, 5)
     };
 }

@@ -3,9 +3,18 @@
 public class Coffre
 {
     private List<Item> coffrealeatoires;
+    public int PositionX { get; set; }
+    public int PositionY { get; set; }
+    public bool Ouvert { get; set; } = false;
+    public string Image { get; set; } = "images/coffre.png";
+    public string ImageOuvert { get; set; } = "images/coffreouvert.png";
+    
 
-    public Coffre()
+    public Coffre(int positionX, int positionY)
     {
+        PositionX = positionX;
+        PositionY = positionY;
+        
         coffrealeatoires = new List<Item>();
         coffrealeatoires.AddRange(Armure.ListArmures());
         coffrealeatoires.AddRange(Arme.ListArme());

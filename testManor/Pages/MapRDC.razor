@@ -9,11 +9,11 @@
          Zones="@RDCZones" 
          Doors="@RDCDoors" 
          Stairs="@Stairs"
+         Coffres="@RDCCoffres"
          Etage="0"
          PlayerPositionX="4"
          PlayerPositionY="7"
-         CoffrePositionX="7"
-         CoffrePositionY="3"
+         
          />
 </div>
 
@@ -42,5 +42,11 @@
     private List<Stair> Stairs = new List<Stair>
     {
         new Stair(9,5)
+    };
+    
+    private List<Coffre> RDCCoffres = new List<Coffre>
+    {
+        new Coffre(7, 3),
+        new Coffre(2, 5)
     };
 }

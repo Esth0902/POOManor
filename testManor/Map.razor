@@ -20,13 +20,15 @@
         //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
         <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
         }
-        else if (row == CoffrePositionY && col == CoffrePositionX && !TresorTrouve)
+        else if (Coffres.Any(c => c.PositionX == col && c.PositionY == row && !c.Ouvert))
         {
-            <img src="images/coffre.png" class="coffreimage"/>
+            var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && !c.Ouvert);
+            <img src="@coffre.Image" class="coffreimage" />
         }
-        else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche coffre ouvert si le trésor est trouvé
+        else if (Coffres.Any(c => c.PositionX == col && c.PositionY == row && c.Ouvert))
         {
-        <img src="images/coffreouvert.png" class="coffreimage" />
+            var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && c.Ouvert);
+            <img src="@coffre.ImageOuvert" class="coffreimage" />
         }
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
@@ -73,14 +75,11 @@ public int Etage { get; set; }
 public int PlayerPositionX { get; set; }// position initiale du héros
 [Parameter]
 public int PlayerPositionY { get; set; } // position initiale du héros
-[Parameter] 
-public int CoffrePositionX { get; set; }
 [Parameter]
-public int CoffrePositionY { get; set; }
-[Parameter]
+public List<Coffre> Coffres { get; set; } = new List<Coffre>();
+
 
 //class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
-public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
 private string TresorTexte { get; set; } = ""; // Texte du trésor
 public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
@@ -113,11 +112,13 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         PlayerPositionX = newPlayerCol;
     }
 
-    if (PlayerPositionX == CoffrePositionX && PlayerPositionY == CoffrePositionY && !TresorTrouve)
+    var coffre = Coffres.FirstOrDefault(c => c.PositionX == PlayerPositionX && c.PositionY == PlayerPositionY && !c.Ouvert);
+    if (coffre != null)
     {
-        TresorTrouve = true;
+        coffre.Ouvert = true;
         SelectRandomTreasure();
     }
+    
     if (Etage == 0 && PlayerPositionX == 9 && PlayerPositionY == 5)
     {
         if (ObjetsRequis1ER())
@@ -150,7 +151,7 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
 
 private void SelectRandomTreasure()
 {
-    Coffre monCoffre = new Coffre();
+    Coffre monCoffre = new Coffre(0,0);
     var objetAleatoire = monCoffre.ChoisirObjet();
 
     if (objetAleatoire is Armure armure)
@@ -253,10 +254,9 @@ private bool ObjetsRequis1ER()
     {
         if (!HeroService.ListInventaire.Contains(item))
         {
-            return false;
+            return true;
         }
     }
     return true;
 }
-
 }
