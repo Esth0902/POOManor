@@ -20,6 +20,7 @@ public class Coffre
         int index = aleatoire.Next(coffrealeatoires.Count);
         return coffrealeatoires[index];
     }
+    
 }
 
 

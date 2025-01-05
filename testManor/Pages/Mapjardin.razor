@@ -15,33 +15,37 @@
          CoffrePositionY="3"
          Etage = "12"
          Etang="@Etang"
+         Caisse="@Caisse"
  
-         />
+    />
  
 </div>
 
 @code {
+
     private List<Monsters> JardinMonsters = new List<Monsters>
     {
-        new Zombie("zombie1", 3,4),
-        new Ghost("ghost1", 1,3 )
+        new Zombie("zombie1", 3, 4),
+        new Ghost("ghost1", 1, 3)
     };
 
     private List<Zone> JardinZones = new List<Zone>
     {
         new Zone(0, 9, 0, 19),
     };
-    
+
     private List<Exit> Exits = new List<Exit>
     {
-        new Exit(19,4),
-        new Exit(9,0)
+        new Exit(19, 4),
+        new Exit(9, 0)
     };
-    
+
     private List<Door> JardinDoors = new List<Door>
     {
     };
 
     private etang Etang = new etang(9, 4);
+    private caisse Caisse = new caisse(3, 6);
+
 }
 }
