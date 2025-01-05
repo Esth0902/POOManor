@@ -158,24 +158,8 @@
             TresorTexte = CurrentFight.text;
         }
 
-
-        if (Etang != null && PlayerPositionX == Etang.PositionX && PlayerPositionY == Etang.PositionY)
-        {
-            //if (!HeroService.ListInventaire.Contains())
-            //{
-            var clef = new Item("la clef de sortie", "images/clefjardin.png");
-            if (!HeroService.ListInventaire.Contains(clef.Image))
-            {
-                HeroService.AddNotif(clef.Image);
-                TresorTexte = $"Vous avez trouvé {clef.Nom} !";
-            }
-            
-        }
-
         if (Caisse != null && PlayerPositionX == Caisse.PositionX && PlayerPositionY == Caisse.PositionY)
         {
-            //if (!HeroService.ListInventaire.Contains())
-            //{
             var epuisette = new Item("une épuisette", "images/epuisette.png");
             if (!HeroService.ListInventaire.Contains(epuisette.Image))
             {
@@ -183,6 +167,17 @@
                 TresorTexte = $"Vous avez trouvé {epuisette.Nom} !";
             }
         }
+        if (Etang != null && PlayerPositionX == Etang.PositionX && PlayerPositionY == Etang.PositionY)
+        {
+            var clef = new Item("la clef de sortie", "images/clefjardin.png");
+            if (!HeroService.ListInventaire.Contains(clef.Image) && HeroService.ListInventaire.Contains("images/epuisette.png"))
+            {
+                HeroService.AddNotif(clef.Image);
+                TresorTexte = $"Vous avez trouvé {clef.Nom} !";
+            }
+        }
+
+
         
         StateHasChanged(); // Rafraîchit la map après chaque déplacement
     }
