@@ -37,8 +37,15 @@ public class fight
     private void MonsterTurn()
     {
         if (IsFightOver) return;
-
-        Hero.Life -= Monster.Damage;
+        if (Hero.Armor - Monster.Damage > 0)
+        {
+            Hero.Armor -= Monster.Damage;
+        }
+        else
+        {
+            Hero.Armor-=Math.Min(Hero.Armor, Monster.Damage);
+            Hero.Life -= Monster.Damage - Hero.Armor;
+        }
 
         if (Hero.Life <= 0)
         {

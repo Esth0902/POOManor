@@ -17,9 +17,9 @@
     <div class="cell">
         @if (MonstersList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //cherche un monstre vivant présent dans la cellule
         {
-        var monster = MonstersList.First(m => m.PositionX == col && m.PositionY == row && m.Alive()); //récupère le premier monstre vivant trouvé dans la cellule
+            var monster = MonstersList.First(m => m.PositionX == col && m.PositionY == row && m.Alive()); //récupère le premier monstre vivant trouvé dans la cellule
         //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
-        <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
+            <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
         }
         else if (row == CoffrePositionY && col == CoffrePositionX && !TresorTrouve)
         {
@@ -27,19 +27,24 @@
         }
         else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche coffre ouvert si le trésor est trouvé
         {
-        <img src="images/coffreouvert.png" class="coffreimage" />
+            <img src="images/coffreouvert.png" class="coffreimage" />
         }
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
-        <img src="@HeroService.MonHero.Image" class="hero"/>
+            <img src="@HeroService.MonHero.Image" class="hero"/>
         }
         else if (Stairs != null && Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
         {
-        <img src="images/stairs1.png" class="StairsImage"/>
+            <img src="images/stairs1.png" class="StairsImage"/>
         }
         else if (Exits != null && Exits.Any(s => s.PositionX == col && s.PositionY == row)) //cherche une sortie dans la cellule
         {
-        <img src="images/porte.png" class="StairsImage"/>
+            var exit = Exits.First(s => s.PositionX == col && s.PositionY == row); // Récupérer la sortie correspondante
+            <img src="@exit.Image" class="StairsImage" />
+        }
+        else if (Etang != null && row == Etang.PositionY && col == Etang.PositionX)
+        {
+            <img src="@Etang.Image" class="EtangImage" />
         }
     </div>
     
@@ -84,6 +89,8 @@
     public int CoffrePositionX { get; set; }
 [Parameter]
     public int CoffrePositionY { get; set; }
+[Parameter]
+    public etang? Etang { get; set; }
     
 public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
@@ -128,14 +135,15 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         SelectRandomTreasure();
     }
     
-    var navigationMap = new Dictionary<(int Etage, int X, int Y), string>
+    var navigationMap = new Dictionary<(int etage, int X, int Y), string>
     {
-        { (0, 9, 5), "Map1E" },
+        { (11, 9, 5), "Map1E" },
         { (1, 9, 5), "MapRDC" },
         { (1, 0, 0), "MapGrenier" },
         { (2, 0, 0), "Map1E" },
-        { (0, 19, 9), "Mapjardin" },
-        { (0, 9, 0 ), "MapRDC"}
+        { (11, 19, 9), "Mapjardin" },
+        { (12, 9, 0 ), "MapRDC"},
+        {(12, 19, 4), "Fin"}
     };
 
     if (navigationMap.TryGetValue((Etage, PlayerPositionX, PlayerPositionY), out var destination))
@@ -150,6 +158,23 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         CurrentFight.Start(); // Lancer le combat
         TresorTexte = CurrentFight.text;
     }
+
+
+    if (Etang != null && PlayerPositionX == Etang.PositionX && PlayerPositionY == Etang.PositionY)
+    {
+        //if (!HeroService.ListInventaire.Contains())
+        //{
+            var clef = new Item("la clef de sortie", "images/clefjardin.png");
+            if (!HeroService.ListInventaire.Contains(clef.Image)) HeroService.AddNotif(clef.Image);
+            TresorTexte = $"Vous avez trouvé {clef.Nom} !";
+        
+    }
+
+    //{
+        //if(!HeroService.ListInventaire.Contains())    HeroService.AddNotif(item.Image);
+        //TresorTexte = $"Vous avez trouvé {item.Nom} !";
+    //}
+        
 
     StateHasChanged(); // Rafraîchit la map après chaque déplacement
 }

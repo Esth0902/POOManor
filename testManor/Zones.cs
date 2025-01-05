@@ -46,13 +46,23 @@ public class Stair
     }
 }
 
-public class Exit
-{
-    public int PositionX { get; set; } // Colonne
-    public int PositionY { get; set; } // Ligne
-    public virtual string Image { get; }
 
-    public Exit(int positionX, int positionY)
+public class Exit : Stair
+{
+    public new string Image = "images/porte.png";
+
+    public Exit(int positionX, int positionY) : base(positionX, positionY)
+    {
+        PositionX = positionX; 
+        PositionY = positionY;
+    }
+    
+}
+
+public class etang : Stair
+{
+    public new string Image =  "images/etang.png";
+    public etang(int positionX, int positionY) : base(positionX, positionY)
     {
         PositionX = positionX;
         PositionY = positionY;
