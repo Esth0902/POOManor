@@ -167,7 +167,6 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
             var clef = new Item("la clef de sortie", "images/clefjardin.png");
             if (!HeroService.ListInventaire.Contains(clef.Image)) HeroService.AddNotif(clef.Image);
             TresorTexte = $"Vous avez trouvé {clef.Nom} !";
-        
     }
 
     //{
