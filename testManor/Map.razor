@@ -37,9 +37,9 @@
         {
         <img src="images/stairs1.png" class="StairsImage"/>
         }
-        else if (Exits != null && Exits.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
+        else if (Exits != null && Exits.Any(s => s.PositionX == col && s.PositionY == row)) //cherche une sortie dans la cellule
         {
-        <img src="images/Exit.png" class="StairsImage"/>
+        <img src="images/porte.png" class="StairsImage"/>
         }
     </div>
     
@@ -85,7 +85,6 @@
 [Parameter]
     public int CoffrePositionY { get; set; }
     
-//class création mapparameters = 1 paramètre qui serait les propriétés de chaque map  
 public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
 private string TresorImage { get; set; } // Image aléatoire du trésor
 private string TresorTexte { get; set; } // Texte du trésor
@@ -128,26 +127,20 @@ private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évèn
         TresorTrouve = true;
         SelectRandomTreasure();
     }
-    if (Etage == 0 && PlayerPositionX == 9 && PlayerPositionY == 5)
+    
+    var navigationMap = new Dictionary<(int Etage, int X, int Y), string>
     {
-        nav.NavigateTo("Map1E");
-    }
-    if (Etage == 1 && PlayerPositionX == 9 && PlayerPositionY == 5)
-    {
-        nav.NavigateTo("MapRDC");
-    }
-    if (Etage == 1 && PlayerPositionX == 0 && PlayerPositionY == 0)
-    {
-        nav.NavigateTo("MapGrenier");
-    }
-    if (Etage == 2 && PlayerPositionX == 0 && PlayerPositionY == 0)
-    {
-        nav.NavigateTo("Map1E");
-    }
+        { (0, 9, 5), "Map1E" },
+        { (1, 9, 5), "MapRDC" },
+        { (1, 0, 0), "MapGrenier" },
+        { (2, 0, 0), "Map1E" },
+        { (0, 19, 9), "Mapjardin" },
+        { (0, 9, 0 ), "MapRDC"}
+    };
 
-    if (Etage == 0 && PlayerPositionX == 19 && PlayerPositionY == 9)
+    if (navigationMap.TryGetValue((Etage, PlayerPositionX, PlayerPositionY), out var destination))
     {
-        nav.NavigateTo("Mapjardin");
+        nav.NavigateTo(destination);
     }
 
     if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
