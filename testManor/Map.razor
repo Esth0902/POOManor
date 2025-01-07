@@ -142,8 +142,17 @@
         {
             if (destination == "Fin" && !HeroService.ListInventaire.Contains("images/clefjardin.png"))
             {
-                TresorTexte = "vous ne pouvez pas encore sortir, il vous faut la clef !";
+                TresorTrouve = true;
+                TresorTexte = "Vous ne pouvez pas encore sortir, il vous faut la clef !";
+                
             }
+            else if (destination == "Mapjardin" && !HeroService.ListInventaire.Contains("images/clefgrenier.png"))
+            {
+                TresorTrouve = true;
+                TresorTexte = "La porte est fermée ... trouvez la clef";
+            }
+            
+            
             else
             {
                 nav.NavigateTo(destination);
@@ -164,21 +173,28 @@
             if (!HeroService.ListInventaire.Contains(epuisette.Image))
             {
                 HeroService.AddNotif(epuisette.Image);
+                TresorTrouve = true;
                 TresorTexte = $"Vous avez trouvé {epuisette.Nom} !";
+                
             }
         }
         if (Etang != null && PlayerPositionX == Etang.PositionX && PlayerPositionY == Etang.PositionY)
         {
             var clef = new Item("la clef de sortie", "images/clefjardin.png");
-            if (!HeroService.ListInventaire.Contains(clef.Image) && HeroService.ListInventaire.Contains("images/epuisette.png"))
+            if(!HeroService.ListInventaire.Contains("images/epuisette.png"))
+            {
+                TresorTrouve = true;
+                TresorTexte = "Quelque chose brille au fond de l'étang ...";
+            }
+            else if (!HeroService.ListInventaire.Contains(clef.Image) && HeroService.ListInventaire.Contains("images/epuisette.png"))
             {
                 HeroService.AddNotif(clef.Image);
+                TresorTrouve = true;
                 TresorTexte = $"Vous avez trouvé {clef.Nom} !";
             }
         }
 
 
-        
         StateHasChanged(); // Rafraîchit la map après chaque déplacement
     }
 
