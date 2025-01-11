@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 150vh;
-    color: #BFAA93;
+    color: white;
     -webkit-box-shadow: inset 0px 0px 50px 26px #122027;
     box-shadow: inset 0px 0px 50px 26px #122027;
     border: 9px solid rgba(18,32,39,0.54);
@@ -12,7 +12,10 @@
     padding-left: 1cm;
 }
 
+
 .GameOver {
     text-align: center;
     margin-left: 0.5cm;
+    margin-top: 2cm;
 }
+
