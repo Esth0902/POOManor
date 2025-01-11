@@ -15,6 +15,12 @@ public class HeroService
       OnChange?.Invoke();
    }
    
+   public void ViderInventaire()
+   {
+      ListInventaire.Clear();
+      OnChange?.Invoke();
+   }
+   
 }
  
 
