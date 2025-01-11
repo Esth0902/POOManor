@@ -15,4 +15,10 @@
       <Content Remove="wwwroot\map.png" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Pages\MapGameOver.Razor.css.cs">
+        <DependentUpon>MapGameOver.razor</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>
