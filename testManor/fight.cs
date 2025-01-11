@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Components.Routing;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
+using testManor.Pages;
+
 using testManor.Pages;
 
 public class fight
@@ -6,6 +9,7 @@ public class fight
     public MonHero Hero { get; private set; }
     public Monsters Monster { get; private set; }
     public bool IsFightOver { get; private set; } = false;
+    public bool GameOver { get; private set; } = false;
     public string text { get; set; }
 
     public fight(MonHero hero, Monsters monster)
@@ -52,7 +56,7 @@ public class fight
         if (Hero.Life <= 0)
         {
             IsFightOver = true;
-            
+            GameOver = true;
             text = "le monstre vous a eu !";
         }
     }
