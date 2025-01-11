@@ -85,7 +85,8 @@
     [Parameter] public int CoffrePositionY { get; set; }
     [Parameter] public etang? Etang { get; set; }
     [Parameter] public caisse? Caisse { get; set; }
-
+    public List<Coffre> Coffres { get; set; } = new List<Coffre>();
+    
     public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
     private string TresorImage { get; set; } // Image aléatoire du trésor
     private string TresorTexte { get; set; } // Texte du trésor
