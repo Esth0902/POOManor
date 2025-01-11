@@ -123,12 +123,6 @@
             PlayerPositionY = newPlayerRow;
             PlayerPositionX = newPlayerCol;
         }
-
-        if (PlayerPositionX == CoffrePositionX && PlayerPositionY == CoffrePositionY && !TresorTrouve)
-        {
-            TresorTrouve = true;
-            SelectRandomTreasure();
-        }
         
         var coffre = Coffres.FirstOrDefault(c => c.PositionX == PlayerPositionX && c.PositionY == PlayerPositionY && !c.Ouvert);
         if (coffre != null)
