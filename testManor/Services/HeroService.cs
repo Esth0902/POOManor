@@ -14,6 +14,15 @@ public class HeroService
       ListInventaire.Add(item);
       OnChange?.Invoke();
    }
+   
+   public void CheckGameOver()
+   {
+      if (MonHero.Life <= 0)
+      {
+         // Déclencher le Game Over
+         nav.NavigateTo("MapGameOver");
+      }
+   }
 }
  
 
