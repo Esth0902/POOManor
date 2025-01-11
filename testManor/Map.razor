@@ -21,13 +21,15 @@
         //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
             <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
         }
-        else if (row == CoffrePositionY && col == CoffrePositionX && !TresorTrouve)
+        else if (Coffres.Any(c => c.PositionX == col && c.PositionY == row && !c.Ouvert))
         {
-            <img src="images/coffre.png" class="coffreimage"/>
+            var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && !c.Ouvert);
+            <img src="@coffre.Image" class="coffreimage" />
         }
-        else if (TresorTrouve && row == CoffrePositionY && col == CoffrePositionX) // Affiche coffre ouvert si le trésor est trouvé
+        else if (Coffres.Any(c => c.PositionX == col && c.PositionY == row && c.Ouvert))
         {
-            <img src="images/coffreouvert.png" class="coffreimage" />
+            var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && c.Ouvert);
+            <img src="@coffre.ImageOuvert" class="coffreimage" />
         }
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
