@@ -129,6 +129,13 @@
             TresorTrouve = true;
             SelectRandomTreasure();
         }
+        
+        var coffre = Coffres.FirstOrDefault(c => c.PositionX == PlayerPositionX && c.PositionY == PlayerPositionY && !c.Ouvert);
+        if (coffre != null)
+        {
+            coffre.Ouvert = true;
+            SelectRandomTreasure();
+        }
 
         var navigationMap = new Dictionary<(int etage, int X, int Y), string>
         {
