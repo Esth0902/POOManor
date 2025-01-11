@@ -16,6 +16,7 @@ public class fight
     {
         while (!IsFightOver)
         {
+            
             HeroTurn();
             if (IsFightOver) break;
             MonsterTurn();
@@ -30,7 +31,7 @@ public class fight
         if (Monster.Life <= 0)
         {
             IsFightOver = true;
-            text = "vous avez vaincu le monstre !";
+            text = "Vous avez vaincu le monstre !";
         }
     }
 
