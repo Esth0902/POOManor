@@ -69,13 +69,17 @@ public class etang : Stair
     }
 }
 
-public class caisse : Stair
+public class caisse
 {
     public new string Image =  "images/caisse.png";
-
-    public caisse(int positionX, int positionY) : base(positionX, positionY)
+    public int PositionX { get; set; }
+    public int PositionY { get; set; }
+    public Item Item { get; set; }
+    public caisse(int positionX, int positionY, Item item)
     {
         PositionX = positionX;
         PositionY = positionY;
+        Item = item;
+
     }
 }

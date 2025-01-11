@@ -14,7 +14,7 @@
          PlayerPositionX="4"
          PlayerPositionY="7"
          Coffres="@RDCCoffres"
-         Caisse="@Caisse"
+         Caisse="@Caisses"
          />
 </div>
 
@@ -48,7 +48,12 @@
     {
         new Exit(19,9)
     };
-    private caisse Caisse = new caisse(9, 0);
+
+    private List<caisse> Caisses = new List<caisse>
+    {
+        new caisse(9, 1, new Item("des vis", "images/vis.png")),
+        new caisse(4, 9, new Item("une visseuse", "images/visseuse.png"))
+    };
     
     private List<Coffre> RDCCoffres = new List<Coffre>
     {

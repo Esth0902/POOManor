@@ -15,6 +15,8 @@
          CoffrePositionY="3"
          Etage = "12"
          Etang="@Etang"
+         Coffres = "@CoffresJardin"
+         Caisse = "@Caisses"
 
  
     />
@@ -45,6 +47,16 @@
     };
 
     private etang Etang = new etang(9, 4);
-
-}
+    
+    private List<Coffre> CoffresJardin = new List<Coffre>
+    {
+        new Coffre(9, 9),
+        new Coffre(10, 0),
+        new Coffre(19, 5)
+    };
+    
+    private List<caisse> Caisses = new List<caisse>
+    {
+        new caisse(9, 1, new Item("une épuisette", "images/epuisette.png"))
+    };
 }

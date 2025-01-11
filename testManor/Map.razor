@@ -49,9 +49,14 @@
             <img src="@Etang.Image" class="EtangImage" />
         }
         
-        else if (Caisse != null && row == Caisse.PositionY && col == Caisse.PositionX)
+        else if (Caisse.Any(c => c.PositionX == col && c.PositionY == row))
         {
-            <img src="@Caisse.Image" class="StairsImage" />
+        var caisse = Caisse.First(c => c.PositionX == col && c.PositionY == row);
+        if (caisse != null)
+        {
+        <img src="@caisse.Image" class="coffreimage" />
+        }
+        
         }
             
     </div>
@@ -84,8 +89,8 @@
     [Parameter] public int CoffrePositionX { get; set; }
     [Parameter] public int CoffrePositionY { get; set; }
     [Parameter] public etang? Etang { get; set; }
-    [Parameter] public caisse? Caisse { get; set; }
-    [Parameter] public List<Coffre> Coffres { get; set; } = new List<Coffre>();
+    [Parameter] public List<caisse>? Caisse { get; set; }
+    [Parameter] public List<Coffre>? Coffres { get; set; } = new List<Coffre>();
     
     public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
     private string TresorImage { get; set; } // Image aléatoire du trésor
@@ -177,14 +182,13 @@
             TresorTexte = CurrentFight.text;
         }
 
-        if (Caisse != null && PlayerPositionX == Caisse.PositionX && PlayerPositionY == Caisse.PositionY)
+        var caisse = Caisse.FirstOrDefault(c => c.PositionX == PlayerPositionX && c.PositionY == PlayerPositionY);
+        if(caisse !=null)
         {
-            var epuisette = new Item("une épuisette", "images/epuisette.png");
-            if (!HeroService.ListInventaire.Contains(epuisette.Image))
+            if (!HeroService.ListInventaire.Contains(caisse.Item.Image))
             {
-                HeroService.AddNotif(epuisette.Image);
-                TresorTexte = $"Vous avez trouvé {epuisette.Nom} !";
-
+                HeroService.AddNotif(caisse.Item.Image);
+                TresorTexte = $"Vous avez trouvé {caisse.Item.Nom} !";
             }
         }
 
@@ -346,13 +350,13 @@
     {
         {
             "MapGrenier", new MapInfo(
-                new List<string> { "planche.png", "vis.png", "visseuse.png" },"Les escaliers sont cassés, trouvez une planche, des vis et une visseuse")},
+                new List<string> { "images/planche.png", "images/vis.png", "images/visseuse.png" },"Les escaliers sont cassés, trouvez une planche, des vis et une visseuse")},
         {
             "Mapjardin", new MapInfo(
-                new List<string> { "clefgrenier.png" },"La porte est fermée, il vous faut la clef")},
+                new List<string> { "images/clefgrenier.png" },"La porte est fermée, il vous faut la clef")},
         {
             "Fin", new MapInfo(
-                new List<string> { "clefjardin.png" },"Vous y êtes presque mais la porte est fermée, il vous faut la clef")},
+                new List<string> { "images/clefjardin.png" },"Vous y êtes presque mais la porte est fermée, il vous faut la clef")},
         };
 
     }
