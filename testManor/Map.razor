@@ -208,19 +208,19 @@
 
     private void SelectRandomTreasure()
     {
-        Coffre monCoffre = new Coffre();
+        Coffre monCoffre = new Coffre(0,0);
         var objetAleatoire = monCoffre.ChoisirObjet();
 
         if (objetAleatoire is Armure armure)
         {
-            if (!HeroService.ListInventaire.Contains(armure.Image)) HeroService.AddNotif(armure.Image);
+            if (!HeroService.ListInventaire.Contains(armure.Image))  HeroService.AddNotif(armure.Image) ;
             TresorTexte = $"Vous avez trouvé {armure.Nom} qui vous procure {armure.PointDefense} point(s) de défense supplémentaire !";
             HeroService.MonHero.Armor += armure.PointDefense;
 
         }
         else if (objetAleatoire is Arme arme)
         {
-            if (!HeroService.ListInventaire.Contains(arme.Image)) HeroService.AddNotif(arme.Image);
+            if (!HeroService.ListInventaire.Contains(arme.Image))  HeroService.AddNotif(arme.Image);
             TresorTexte = $"Vous avez trouvé {arme.Nom} qui vous procure {arme.Pointdegats} point(s) de dégats supplémentaire !";
             HeroService.MonHero.Damage += arme.Pointdegats;
         }
@@ -232,7 +232,7 @@
         }
         else if (objetAleatoire is Item item)
         {
-            if (!HeroService.ListInventaire.Contains(item.Image)) HeroService.AddNotif(item.Image);
+            if (!HeroService.ListInventaire.Contains(item.Image))  HeroService.AddNotif(item.Image);
             TresorTexte = $"Vous avez trouvé {item.Nom} !";
         }
 
