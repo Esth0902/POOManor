@@ -13,6 +13,9 @@
 
     <ItemGroup>
       <Content Remove="wwwroot\map.png" />
+      <Content Update="Pages\Fin.razor.css">
+        <DependentUpon>Fin.razor</DependentUpon>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

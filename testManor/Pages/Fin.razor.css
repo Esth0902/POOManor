@@ -1,0 +1,20 @@
+﻿.fin {
+    background-image: url('images/Haunted_House.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 150vh;
+    color: white;
+    -webkit-box-shadow: inset 0px 0px 50px 26px #122027;
+    box-shadow: inset 0px 0px 50px 26px #122027;
+    border: 9px solid rgba(18,32,39,0.54);
+    border-radius: 9px;
+    padding-left: 1cm;
+}
+
+
+.texte {
+    text-align: center;
+    margin-left: 0.5cm;
+    margin-top: 2cm;
+}
