@@ -1,4 +1,5 @@
-﻿using testManor.Pages;
+﻿using Microsoft.AspNetCore.Components.Routing;
+using testManor.Pages;
 
 public class fight
 {
@@ -51,6 +52,7 @@ public class fight
         if (Hero.Life <= 0)
         {
             IsFightOver = true;
+            
             text = "le monstre vous a eu !";
         }
     }
