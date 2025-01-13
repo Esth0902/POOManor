@@ -1,31 +1,33 @@
-Jeu type "dont vous êtes le héro" - Choix de l'utilisateur + événements personnage principal : combien de choix ? personnages secondaires : monstres Objets : trésors -> armure, arme, argent, vie, potions Objectif à atteindre : sortir
+PooManor
 
-Combats : niveau héro - niveau monstre choix combattre ou s'enfuir combat type pokémon - tour par tour
+Description : 
+PooManor est un jeu de type escape game dans lequel les joueurs doivent choisir un personnage (homme ou femme) et lui donner un nom. Le jeu se déroule sur quatre cartes différentes : le rez-de-chaussée, le premier étage, le grenier et le jardin. Chaque carte contient des monstres de niveaux variés, des coffres et des boîtes permettant de récupérer des points de vie, des points de dégâts et des points d'armure. Pour accéder à certaines pièces, le joueur devra trouver et utiliser des objets spécifiques.
 
-Carte : plusieurs cartes ? limite bord du plateau
+Lien Git : https://github.com/Esth0902/POOManor.git
 
-échanges avec utilisateur : textuel
 
-affichage écran : nb vie - arme - armure - points défense - points attaque
+Déplacement du personnage : 
+Utilisez les flèches du clavier pour déplacer votre personnage.
 
-niveau Monstre Personnage principal : caractéristiques du héro : Nom Sexe nombre points de vie - limite maximum nombre points d'attaque - armes nombre points défense - armures - choix de prendre ou de laisser (1 seule arme - 1 seule armure)
+Interaction avec l'environnement : 
+Le personnage peut passer par les portes mais ne peut pas traverser les murs.
 
-Monstres : 4 types différents - 3 jeu + 1 boss caractéristiques : nom nombre points de vie nombre points d'attaque nombre points défense
+Objectifs : 
+Explorez les différentes cartes, combattez les monstres, trouvez des objets pour accéder à de nouvelles pièces et récupérez des points de vie, de dégâts et d'armure.
 
-Objets : évolution : armes, armures inutiles : papier toilette, canard en plastique utiles : mix avec objet "inutile" qui pourront servir plus tard
+Langage : C# - HTML - CSS 
+Framework : Blazor
+Autres : .NET
 
-potions Choix de chemin : intersections avec choix
+Contributeurs :
+Nathan - Développeur
+Esther - Développeur
+Laetitia - Développeur
 
-événements random Scénario de base : voleur - maison - coffre
 
-Manoir : Extérieur : jardin toute la map RDC :
+Contact
+Pour toute question ou contribution supplémentaire, veuillez contacter :
 
-Hall d'entrée Cuisine Salon garage buanderie 1er étage : chambre 1 chambre 2 bureau débarras salle de bain Cave Grenier - pour atteindre grenier lampe de poche - planches - clou - marteau - piles lampe de poche : aléatoire entre débarras - buanderie - garage
-
-objets : caisse à outil : objet aléatoire (marteau - papier toilette - lunettes) armoire cuisine : couteau, poêle, croquettes pour chat hall d'entrée : parapluie, boîte à chaussures, manteau garage :: buanderie : chambre 1 : chambre 2 : bureau : débarras : salle de bain : grenier : toute la map
-
-idée : étang avec poissons rouges, besoin d'une épuisette pour récupérer un poisson qui nourrit le chat
-
-Nathan : Personnage principal // Jardin 
-Esther : Monstres // Cuisine 
-Laeti : Objets // Chambres // Page d'accueil pour l'image du manoir. 
+Nathan : email@example.com
+Esther : email@example.com
+Laetitia : email@example.com
