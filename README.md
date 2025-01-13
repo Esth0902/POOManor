@@ -22,11 +22,3 @@ Contributeurs :
 Nathan - Développeur
 Esther - Développeur
 Laetitia - Développeur
-
-
-Contact
-Pour toute question ou contribution supplémentaire, veuillez contacter :
-
-Nathan : email@example.com
-Esther : email@example.com
-Laetitia : email@example.com
