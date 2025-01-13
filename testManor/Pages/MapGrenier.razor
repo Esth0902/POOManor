@@ -21,7 +21,9 @@
 @code {
     private List<Monsters> GrenierMonsters = new List<Monsters>
     {
-        new Werewolf("loupgarou1", 3,4)
+        new Werewolf("loupgarou1", 3,4),
+        new Ghost("GhostG", 9,0),
+        new Zombie("ZombieG", 0,4)
     };
 
     private List<Zone> GrenierZones = new List<Zone>
@@ -43,7 +45,7 @@
 
     private List<caisse> Caisses = new List<caisse>
     {
-    new caisse(9,4, new Item ("la clef de la porte de la cuisine", "images/clefgrenier.png"))
+    new caisse(3,4, new Item ("la clef de la porte de la cuisine", "images/clefgrenier.png"))
     };
 
 }

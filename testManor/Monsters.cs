@@ -31,8 +31,8 @@ public class Zombie : Monsters
     
     public Zombie(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
-        Life = 10;
-        Damage = 1;
+        Life = 20;
+        Damage = 2;
     }
 }
 
@@ -42,8 +42,8 @@ public class Ghost : Monsters
     
     public Ghost(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
-        Life = 10;
-        Damage = 2;
+        Life = 40;
+        Damage = 5;
     }
 }
 
@@ -53,8 +53,8 @@ public class Werewolf : Monsters
     
     public Werewolf(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {
-        Life = 30;
-        Damage = 5;
+        Life = 70;
+        Damage = 20;
     }
 }
 

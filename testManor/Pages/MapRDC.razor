@@ -22,7 +22,8 @@
     private List<Monsters> RDCMonsters = new List<Monsters>
     {
         new Zombie("Zombie1", 2, 8),
-        new Zombie("Zombie2", 0,3)
+        new Zombie("Zombie2", 0,3),
+        new Zombie("Zombie3", 16, 7)
     };
 
     private List<Zone> RDCZones = new List<Zone>
@@ -51,8 +52,8 @@
 
     private List<caisse> Caisses = new List<caisse>
     {
-        new caisse(9, 1, new Item("des vis", "images/vis.png")),
-        new caisse(4, 9, new Item("une visseuse", "images/visseuse.png"))
+        new caisse(9, 0, new Item("des vis", "images/vis.png")),
+        new caisse(0, 5, new Item("une visseuse", "images/visseuse.png"))
     };
     
     private List<Coffre> RDCCoffres = new List<Coffre>

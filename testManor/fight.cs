@@ -57,7 +57,6 @@ public class fight
         {
             IsFightOver = true;
             GameOver = true;
-            text = "le monstre vous a eu !";
         }
     }
 }
