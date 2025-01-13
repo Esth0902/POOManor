@@ -278,6 +278,9 @@
                 {
                     CurrentFight = new fight(HeroService.MonHero, monster);
                     CurrentFight.Start(); // Lancer le combat
+                    if (CurrentFight.GameOver) {
+                        nav.NavigateTo("MapGameOver");
+                    }
                     TresorTexte = CurrentFight.text;
                 }
             }
