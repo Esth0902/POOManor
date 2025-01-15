@@ -93,7 +93,6 @@
     public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
     private string? TresorImage { get; set; } // Image aléatoire du trésor
     private string? TresorTexte { get; set; } // Texte du trésor
-    public bool StopMoving { get; set; }
     private fight? CurrentFight;
 
     private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
@@ -243,7 +242,7 @@
     public async Task MoveMonsters()
     {
         var random = new Random();
-        while (!StopMoving)
+        while (!HeroService.StopMoving)
         {
             if (MonstersList != null)
                 foreach (var monster in MonstersList)
@@ -300,11 +299,6 @@
             await mapElement.FocusAsync();
             await MoveMonsters();
         }
-    }
-
-    public void StopMovement() //pour arrêter les déplacements des monstres
-    {
-        StopMoving = true;
     }
 
     public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetCol)
