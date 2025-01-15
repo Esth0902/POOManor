@@ -1,12 +1,11 @@
 ﻿
-@using System.Net.Mime
 @using testManor.Pages
 @using testManor.Pages.Services
 @inject NavigationManager Nav
 @inject HeroService HeroService
 
 <div class="gestionvie">
-    <p><img src="@HeroService.MonHero.Image" class="Personnage" /> &nbsp; &nbsp; &nbsp; &nbsp; Nom : @HeroService.MonHero.Nom &nbsp; &nbsp; &nbsp; &nbsp;Point de vie : @HeroService.MonHero.Life  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : @HeroService.MonHero.Damage &nbsp; &nbsp; &nbsp; &nbsp;Point de défense : @HeroService.MonHero.Armor    </p>
+    <p><img src="@HeroService.MonHero.Image" class="Personnage" alt=""/> &nbsp; &nbsp; &nbsp; &nbsp; Nom : @HeroService.MonHero.Nom &nbsp; &nbsp; &nbsp; &nbsp;Point de vie : @HeroService.MonHero.Life  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : @HeroService.MonHero.Damage &nbsp; &nbsp; &nbsp; &nbsp;Point de défense : @HeroService.MonHero.Armor    </p>
 </div>
 
 <div @ref="mapElement" @onkeydown="HandleKeyDown" tabindex="0" class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
@@ -15,46 +14,45 @@
         @for (int col = 0; col < Column; col++)
         {
     <div class="cell">
-        @if (MonstersList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //cherche un monstre vivant présent dans la cellule
+        @if (MonstersList != null && MonstersList.Any(m => m.PositionX == col && m.PositionY == row && m.Alive())) //cherche un monstre vivant présent dans la cellule
         {
             var monster = MonstersList.First(m => m.PositionX == col && m.PositionY == row && m.Alive()); //récupère le premier monstre vivant trouvé dans la cellule
         //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
             <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
         }
-        else if (Coffres.Any(c => c.PositionX == col && c.PositionY == row && !c.Ouvert))
+        else if (Coffres != null && Coffres.Any(c => c.PositionX == col && c.PositionY == row && !c.Ouvert))
         {
             var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && !c.Ouvert);
-            <img src="@coffre.Image" class="coffreimage" />
+            <img src="@coffre.Image" class="coffreimage" alt=""/>
         }
-        else if (Coffres.Any(c => c.PositionX == col && c.PositionY == row && c.Ouvert))
+        else if (Coffres != null && Coffres.Any(c => c.PositionX == col && c.PositionY == row && c.Ouvert))
         {
             var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && c.Ouvert);
-            <img src="@coffre.ImageOuvert" class="coffreimage" />
+            <img src="@coffre.ImageOuvert" class="coffreimage" alt=""/>
         }
         else if (row == PlayerPositionY && col == PlayerPositionX) 
         {
-            <img src="@HeroService.MonHero.Image" class="hero"/>
+            <img src="@HeroService.MonHero.Image" class="hero" alt=""/>
         }
         else if (Stairs != null && Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
         {
-            <img src="images/stairs1.png" class="StairsImage"/>
+            <img src="images/stairs1.png" class="StairsImage" alt=""/>
         }
         else if (Exits != null && Exits.Any(s => s.PositionX == col && s.PositionY == row)) //cherche une sortie dans la cellule
         {
             var exit = Exits.First(s => s.PositionX == col && s.PositionY == row); // Récupérer la sortie correspondante
-            <img src="@exit.Image" class="StairsImage" />
+            <img src="@exit.Image" class="StairsImage" alt=""/>
         }
         else if (Etang != null && row == Etang.PositionY && col == Etang.PositionX)
         {
-            <img src="@Etang.Image" class="EtangImage" />
+            <img src="@Etang.Image" class="EtangImage" alt=""/>
         }
         
-        else if (Caisse.Any(c => c.PositionX == col && c.PositionY == row))
+        else if (Caisse != null && Caisse.Any(c => c.PositionX == col && c.PositionY == row))
         {
         var caisse = Caisse.First(c => c.PositionX == col && c.PositionY == row);
-        if (caisse != null)
         {
-        <img src="@caisse.Image" class="coffreimage" />
+            <img src="@caisse.Image" class="coffreimage" alt=""/>
         }
         
         }
@@ -74,13 +72,13 @@
 
 @code {
 
-    [Parameter] public string CurrentFloorImage { get; set; }
-    [Parameter] public string CurrentMap { get; set; }
+    [Parameter] public string? CurrentFloorImage { get; set; }
+    [Parameter] public string? CurrentMap { get; set; }
     [Parameter] public int Row { get; set; }
     [Parameter] public int Column { get; set; }
-    [Parameter] public List<Monsters> MonstersList { get; set; }
-    [Parameter] public List<Zone> Zones { get; set; } // initialisation de la liste des zones
-    [Parameter] public List<Door> Doors { get; set; } // initialisation de la liste des portes
+    [Parameter] public List<Monsters>? MonstersList { get; set; }
+    [Parameter] public List<Zone>? Zones { get; set; } // initialisation de la liste des zones
+    [Parameter] public List<Door>? Doors { get; set; } // initialisation de la liste des portes
     [Parameter] public List<Stair>? Stairs { get; set; } // initialisation de la liste des escaliers
     [Parameter] public List<Exit>? Exits { get; set; }
     [Parameter] public int Etage { get; set; }
@@ -93,9 +91,9 @@
     [Parameter] public List<Coffre>? Coffres { get; set; } = new List<Coffre>();
     
     public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
-    private string TresorImage { get; set; } // Image aléatoire du trésor
-    private string TresorTexte { get; set; } // Texte du trésor
-    public bool StopMoving { get; set; } = false; //stopmoving initialisé à "false"
+    private string? TresorImage { get; set; } // Image aléatoire du trésor
+    private string? TresorTexte { get; set; } // Texte du trésor
+    public bool StopMoving { get; set; }
     private fight? CurrentFight;
 
     private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
@@ -247,43 +245,46 @@
         var random = new Random();
         while (!StopMoving)
         {
-            foreach (var monster in MonstersList)
-            {
-                int direction = random.Next(4);
-                int newRow = monster.PositionY, newCol = monster.PositionX;
-
-                switch (direction)
+            if (MonstersList != null)
+                foreach (var monster in MonstersList)
                 {
-                    case 0:
-                        newRow = monster.PositionY - 1;
-                        break; // Haut
-                    case 1:
-                        newRow = monster.PositionY + 1;
-                        break; // Bas
-                    case 2:
-                        newCol = monster.PositionX - 1;
-                        break; // Gauche
-                    case 3:
-                        newCol = monster.PositionX + 1;
-                        break; // Droite
-                }
+                    int direction = random.Next(4);
+                    int newRow = monster.PositionY, newCol = monster.PositionX;
 
-                if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
-                {
-                    monster.PositionY = newRow;
-                    monster.PositionX = newCol;
-                }
-
-                if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY && monster.Alive())
-                {
-                    CurrentFight = new fight(HeroService.MonHero, monster);
-                    CurrentFight.Start(); // Lancer le combat
-                    if (CurrentFight.GameOver) {
-                        Nav.NavigateTo("MapGameOver");
+                    switch (direction)
+                    {
+                        case 0:
+                            newRow = monster.PositionY - 1;
+                            break; // Haut
+                        case 1:
+                            newRow = monster.PositionY + 1;
+                            break; // Bas
+                        case 2:
+                            newCol = monster.PositionX - 1;
+                            break; // Gauche
+                        case 3:
+                            newCol = monster.PositionX + 1;
+                            break; // Droite
                     }
-                    TresorTexte = CurrentFight.text;
+
+                    if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
+                    {
+                        monster.PositionY = newRow;
+                        monster.PositionX = newCol;
+                    }
+
+                    if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY && monster.Alive())
+                    {
+                        CurrentFight = new fight(HeroService.MonHero, monster);
+                        CurrentFight.Start(); // Lancer le combat
+                        if (CurrentFight.GameOver)
+                        {
+                            Nav.NavigateTo("MapGameOver");
+                        }
+
+                        TresorTexte = CurrentFight.text;
+                    }
                 }
-            }
 
             StateHasChanged();
             await Task.Delay(500);
