@@ -2,7 +2,7 @@
 @using System.Net.Mime
 @using testManor.Pages
 @using testManor.Pages.Services
-@inject NavigationManager nav
+@inject NavigationManager Nav
 @inject HeroService HeroService
 
 <div class="gestionvie">
@@ -167,7 +167,7 @@
             }
         
 
-            nav.NavigateTo(destination); 
+            Nav.NavigateTo(destination); 
         }
 
 
@@ -177,7 +177,7 @@
             CurrentFight = new fight(HeroService.MonHero, monster);
             CurrentFight.Start(); // Lancer le combat
             if (CurrentFight.GameOver) {
-                nav.NavigateTo("MapGameOver");
+                Nav.NavigateTo("MapGameOver");
             }
             TresorTexte = CurrentFight.text;
         }
@@ -279,7 +279,7 @@
                     CurrentFight = new fight(HeroService.MonHero, monster);
                     CurrentFight.Start(); // Lancer le combat
                     if (CurrentFight.GameOver) {
-                        nav.NavigateTo("MapGameOver");
+                        Nav.NavigateTo("MapGameOver");
                     }
                     TresorTexte = CurrentFight.text;
                 }
