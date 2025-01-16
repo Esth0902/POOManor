@@ -163,7 +163,11 @@
                     return;
                 }
             }
-        
+
+            if (destination == "Fin")
+            {
+                HeroService.StopMoving = true;
+            }
 
             Nav.NavigateTo(destination); 
         }
@@ -273,6 +277,7 @@
                         CurrentFight.Start(); // Lancer le combat
                         if (CurrentFight.GameOver)
                         {
+                            HeroService.StopMoving = true;
                             Nav.NavigateTo("MapGameOver");
                         }
 
