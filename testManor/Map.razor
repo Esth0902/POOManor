@@ -178,6 +178,7 @@
             var monster = MonstersList.First(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive());
             CurrentFight = new fight(HeroService.MonHero, monster);
             CurrentFight.Start(); // Lancer le combat
+            HeroService.StopMoving = true;
             if (CurrentFight.GameOver) {
                 Nav.NavigateTo("MapGameOver");
             }
