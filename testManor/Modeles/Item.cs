@@ -18,6 +18,7 @@ public class Item
             new Item("des planches", "images/planche.png"),
             new Item("des vis", "images/vis.png"),
             new Item("une visseuse", "images/visseuse.png"),
+            new Item("la clef de la cuisine", "images/clefgrenier.png")
         };
     }
 }
