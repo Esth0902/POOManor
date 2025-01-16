@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using testManor.Pages;
-
-using testManor.Pages;
+using testManor.Pages.Services;
 
 public class fight
 {
@@ -21,7 +20,6 @@ public class fight
     {
         while (!IsFightOver)
         {
-            
             HeroTurn();
             if (IsFightOver) break;
             MonsterTurn();
