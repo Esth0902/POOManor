@@ -1,7 +1,7 @@
 ﻿public class MonHero
 {
-    public string Nom { get; set; }
-    public string Image { get; set; }
+    public string Nom { get; }
+    public string Image { get; }
     public int Damage { get; set; }
     public int Life { get; set; }
     public int Armor { get; set; }

@@ -1,7 +1,7 @@
 ﻿namespace testManor.Pages;
 
 public class Armure : Item
-{ public int PointDefense { get; set; }
+{ public int PointDefense { get; }
 
     public Armure(string nom, string image, int pointDefense) : base(nom, image)
     {

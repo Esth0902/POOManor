@@ -2,10 +2,10 @@
 
 public class Zone
 {
-    public int StartRow { get; set; } //1ere ligne de la zone
-    public int EndRow { get; set; } //dernière ligne de la zone
-    public int StartColumn { get; set; } //1ere colonne de la zone
-    public int EndColumn { get; set; } //dernière colonne de la zone
+    public int StartRow { get; } //1ere ligne de la zone
+    public int EndRow { get; } //dernière ligne de la zone
+    public int StartColumn { get;} //1ere colonne de la zone
+    public int EndColumn { get;} //dernière colonne de la zone
 
     public Zone(int startRow, int endRow, int startColumn, int endColumn)
     {
@@ -23,8 +23,8 @@ public class Zone
 
 public class Door
 {
-    public (int Row, int Column) Position1 { get; set; } // Position dans la première zone
-    public (int Row, int Column) Position2 { get; set; } // Position dans la deuxième zone
+    public (int Row, int Column) Position1 { get; } // Position dans la première zone
+    public (int Row, int Column) Position2 { get; } // Position dans la deuxième zone
 
     public Door((int Row, int Column) position1, (int Row, int Column) position2)
     {
@@ -72,9 +72,9 @@ public class etang : Stair
 public class caisse
 {
     public new string Image =  "images/caisse.png";
-    public int PositionX { get; set; }
-    public int PositionY { get; set; }
-    public Item Item { get; set; } //utilise la classe Item pour lier un objet à la caisse
+    public int PositionX { get; }
+    public int PositionY { get; }
+    public Item Item { get; }
     public caisse(int positionX, int positionY, Item item)
     {
         PositionX = positionX;

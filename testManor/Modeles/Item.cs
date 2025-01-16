@@ -2,8 +2,8 @@
 
 public class Item
 {
-    public string Nom { get; set; }
-    public string Image { get; set; }   
+    public string Nom { get; }
+    public string Image { get; }   
     
     public Item(string nom, string image)
     {
