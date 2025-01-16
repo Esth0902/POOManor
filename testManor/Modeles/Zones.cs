@@ -80,5 +80,6 @@ public class caisse
         PositionX = positionX;
         PositionY = positionY;
         Item = item;
+
     }
 }

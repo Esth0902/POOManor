@@ -49,12 +49,11 @@
     {
         new Exit(19,9)
     };
-    
-    static List<Item> items = Item.ListDiversItems();
+
     private List<caisse> Caisses = new List<caisse>
     {
-        new caisse(9, 0, items[0]),
-        new caisse(0, 5, items[1])
+        new caisse(9, 0, new Item("des vis", "images/vis.png")),
+        new caisse(0, 5, new Item("une visseuse", "images/visseuse.png"))
     };
     
     private List<Coffre> RDCCoffres = new List<Coffre>
