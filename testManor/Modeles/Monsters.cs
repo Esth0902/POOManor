@@ -2,11 +2,10 @@
 
 public class Monsters
 {
-    public string Name { get; set; }
+    public string Name { get; }
     public int PositionX { get; set; } // Colonne
     public int PositionY { get; set; } // Ligne
     public virtual string Image { get; }
-
     protected internal int Life { get; set; }
     protected internal int Damage { get; set; }
     

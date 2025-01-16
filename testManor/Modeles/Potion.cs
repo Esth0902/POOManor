@@ -1,7 +1,7 @@
 ﻿namespace testManor.Pages;
 
 public class Potion : Item
-{ public int Pointdevie { get; set; }
+{ public int Pointdevie { get; }
 
     public Potion(string nom, string image, int pointdevie) : base(nom, image)
     {

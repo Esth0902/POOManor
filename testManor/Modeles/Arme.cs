@@ -2,7 +2,7 @@
 
 public class Arme : Item
 {
-    public int Pointdegats { get; set; }
+    public int Pointdegats { get; }
 
     public Arme(string nom, string image, int pointdegats) : base(nom, image)
     {

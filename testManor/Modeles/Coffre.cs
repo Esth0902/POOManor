@@ -3,13 +3,14 @@
 public class Coffre
 {
     private List<Item> coffrealeatoires;
-    public int PositionX { get; set; }
-    public int PositionY { get; set; }
-    public bool Ouvert { get; set; } = false;
-    public string Image { get; set; } = "images/coffre.png";
-    public string ImageOuvert { get; set; } = "images/coffreouvert.png";
+    public int PositionX { get;}
+    public int PositionY { get;}
+    public bool Ouvert { get; set; }
     
-
+    public string Image  = "images/coffre.png";
+    
+    public string ImageOuvert = "images/coffreouvert.png";
+    
     public Coffre(int positionX, int positionY)
     {
         PositionX = positionX;
