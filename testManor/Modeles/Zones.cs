@@ -15,7 +15,7 @@ public class Zone
         EndColumn = endColumn;
     }
 
-    public bool IsInside(int row, int column)
+    public bool IsInside(int row, int column) //la position actuelle est-elle dans la zone ?
     {
         return row >= StartRow && row <= EndRow && column >= StartColumn && column <= EndColumn; //
     }
@@ -74,7 +74,7 @@ public class caisse
     public new string Image =  "images/caisse.png";
     public int PositionX { get; set; }
     public int PositionY { get; set; }
-    public Item Item { get; set; }
+    public Item Item { get; set; } //utilise la classe Item pour lier un objet à la caisse
     public caisse(int positionX, int positionY, Item item)
     {
         PositionX = positionX;

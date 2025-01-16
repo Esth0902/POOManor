@@ -4,9 +4,13 @@
 @inject NavigationManager Nav
 @inject HeroService HeroService
 
+<!-- Affichage des stats du héro, mise à jour via HeroService -->
+
 <div class="gestionvie">
     <p><img src="@HeroService.MonHero.Image" class="Personnage" alt=""/> &nbsp; &nbsp; &nbsp; &nbsp; Nom : @HeroService.MonHero.Nom &nbsp; &nbsp; &nbsp; &nbsp;Point de vie : @HeroService.MonHero.Life  &nbsp; &nbsp; &nbsp; &nbsp;Point de dégat : @HeroService.MonHero.Damage &nbsp; &nbsp; &nbsp; &nbsp;Point de défense : @HeroService.MonHero.Armor    </p>
 </div>
+
+<!-- pour chaque cellule du tableau, vérifie la présence d'un monstre, d'un coffre, du héro, d'un escalier, ... et l'affiche -->
 
 <div @ref="mapElement" @onkeydown="HandleKeyDown" tabindex="0" class="@CurrentMap" style="background-image: url('@CurrentFloorImage')">
     @for (int row = 0; row < Row; row++)
@@ -20,35 +24,35 @@
         //en vérifiant que la position x/y du monstre correspondent à la position de la cellule et que le monstre est vivant.
             <img src="@monster.Image" alt="@monster.Name" class="monster" /> //si monstre vivant trouvé dans la cellule, affiche son image
         }
-        else if (Coffres != null && Coffres.Any(c => c.PositionX == col && c.PositionY == row && !c.Ouvert))
+        else if (Coffres != null && Coffres.Any(c => c.PositionX == col && c.PositionY == row && !c.Ouvert)) //affichage du coffre s'il n'est pas ouvert
         {
             var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && !c.Ouvert);
             <img src="@coffre.Image" class="coffreimage" alt=""/>
         }
-        else if (Coffres != null && Coffres.Any(c => c.PositionX == col && c.PositionY == row && c.Ouvert))
+        else if (Coffres != null && Coffres.Any(c => c.PositionX == col && c.PositionY == row && c.Ouvert)) //affichage du coffre s'il a été ouvert
         {
             var coffre = Coffres.First(c => c.PositionX == col && c.PositionY == row && c.Ouvert);
             <img src="@coffre.ImageOuvert" class="coffreimage" alt=""/>
         }
-        else if (row == PlayerPositionY && col == PlayerPositionX) 
+        else if (row == PlayerPositionY && col == PlayerPositionX) //affichage du héro
         {
             <img src="@HeroService.MonHero.Image" class="hero" alt=""/>
         }
-        else if (Stairs != null && Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //cherche un escalier dans la cellule
+        else if (Stairs != null && Stairs.Any(s => s.PositionX == col && s.PositionY == row)) //affichage des escaliers
         {
             <img src="images/stairs1.png" class="StairsImage" alt=""/>
         }
-        else if (Exits != null && Exits.Any(s => s.PositionX == col && s.PositionY == row)) //cherche une sortie dans la cellule
+        else if (Exits != null && Exits.Any(s => s.PositionX == col && s.PositionY == row)) //affichage des sorties
         {
-            var exit = Exits.First(s => s.PositionX == col && s.PositionY == row); // Récupérer la sortie correspondante
+            var exit = Exits.First(s => s.PositionX == col && s.PositionY == row); 
             <img src="@exit.Image" class="StairsImage" alt=""/>
         }
-        else if (Etang != null && row == Etang.PositionY && col == Etang.PositionX)
+        else if (Etang != null && row == Etang.PositionY && col == Etang.PositionX) // affichage de l'étang
         {
             <img src="@Etang.Image" class="EtangImage" alt=""/>
         }
         
-        else if (Caisse != null && Caisse.Any(c => c.PositionX == col && c.PositionY == row))
+        else if (Caisse != null && Caisse.Any(c => c.PositionX == col && c.PositionY == row)) // affichage des caisses
         {
         var caisse = Caisse.First(c => c.PositionX == col && c.PositionY == row);
         {
@@ -63,7 +67,7 @@
     }
 </div>
 
-<div class="prompt">
+<div class="prompt"> <!-- affichage du texte dans la fenêtre sous la map -->
     @if (!string.IsNullOrEmpty(TresorTexte))
     {
     <p>@TresorTexte</p>
@@ -71,6 +75,7 @@
 </div>
 
 @code {
+// liste de paramètres nécessaires à la création d'une nouvelle map
 
     [Parameter] public string? CurrentFloorImage { get; set; }
     [Parameter] public string? CurrentMap { get; set; }
@@ -93,29 +98,25 @@
     public bool TresorTrouve { get; set; } = false; // Indique si le trésor a été trouvé
     private string? TresorImage { get; set; } // Image aléatoire du trésor
     private string? TresorTexte { get; set; } // Texte du trésor
-    private fight? CurrentFight;
+    private fight? CurrentFight; //méthode de combat
 
-    private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier  
+    private void HandleKeyDown(KeyboardEventArgs e) // Méthode pour gérer l'évènement clavier et le déplacement du héro
     {
         int newPlayerRow = PlayerPositionY, newPlayerCol = PlayerPositionX;
         {
             switch (e.Key)
             {
                 case "ArrowUp":
-                    newPlayerRow = PlayerPositionY - 1; // Haut
-                    //if (PlayerPositionY > 0) PlayerPositionY--;
+                    newPlayerRow = PlayerPositionY - 1; // touche du haut, modifie la positionY du héro
                     break;
                 case "ArrowDown":
-                    newPlayerRow = PlayerPositionY + 1;
-                    //if (PlayerPositionY < 9) PlayerPositionY++;
+                    newPlayerRow = PlayerPositionY + 1; // touche du bas
                     break;
                 case "ArrowLeft":
-                    newPlayerCol = PlayerPositionX - 1;
-                    //if (PlayerPositionX > 0) PlayerPositionX--;
+                    newPlayerCol = PlayerPositionX - 1; // touche de gauche, modifie la positionX du héro
                     break;
                 case "ArrowRight":
-                    newPlayerCol = PlayerPositionX + 1;
-                    //if (PlayerPositionX < 19) PlayerPositionX++;
+                    newPlayerCol = PlayerPositionX + 1; // touche de droite
                     break;
             }
         }
@@ -231,12 +232,6 @@
             TresorTexte = $"Vous avez trouvé {potions.Nom} qui vous procure {potions.Pointdevie} point(s) de vie supplémentaire !";
             HeroService.MonHero.Life += potions.Pointdevie;
         }
-        else if (objetAleatoire is Item item)
-        {
-            if (!HeroService.ListInventaire.Contains(item.Image))  HeroService.AddNotif(item.Image);
-            TresorTexte = $"Vous avez trouvé {item.Nom} !";
-        }
-
     }
 
     public async Task MoveMonsters()
@@ -301,25 +296,28 @@
         }
     }
 
-    public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetCol)
+    public bool CanMoveTo(int currentRow, int currentCol, int targetRow, int targetCol) // Vérifie si le déplacement est effectué dans la même zone ou via une porte
     {
-// Vérifier si le déplacement reste dans la même zone
+        // Recherche dans la liste des zones le premier élément qui répond à la condition, sinon renvoie null
+        // la méthode IsInside est créée dans la classe zone 
+        
         var currentZone = Zones.FirstOrDefault(z => z.IsInside(currentRow, currentCol));
-//recherche dans la liste des zones le premier élément qui répond à la condition, sinon renvoie null
+        
+        // Vérifie la zone de déplacement
+        
         var targetZone = Zones.FirstOrDefault(z => z.IsInside(targetRow, targetCol));
-
+        
+        // si la zone actuelle est égale à la zone de déplacement, renvoie vrai
         if (currentZone == targetZone)
             return true;
 
-
-
-// Vérifier si le déplacement passe par une porte
+        // Vérifie si le déplacement passe par une porte
         return Doors.Any(d =>
             (d.Position1 == (currentRow, currentCol) && d.Position2 == (targetRow, targetCol)) ||
             (d.Position2 == (currentRow, currentCol) && d.Position1 == (targetRow, targetCol)));
     }
 
-    private bool ObjetsRequis(List<string> objetsRequis)
+    private bool ObjetsRequis(List<string> objetsRequis) // vérifie si l'inventaire contient les objets requis pour le passage vers une autre pièce
     {
         foreach (var item in objetsRequis)
         {
@@ -344,7 +342,7 @@
         }
     }
 
-    private readonly Dictionary<string, MapInfo> objetsNecessairesParMap = new()
+    private readonly Dictionary<string, MapInfo> objetsNecessairesParMap = new() // dictionnaire contenant la liste des objets nécessaires selon les pièces
     {
         {
             "MapGrenier", new MapInfo(

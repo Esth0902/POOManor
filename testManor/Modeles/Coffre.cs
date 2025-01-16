@@ -19,7 +19,6 @@ public class Coffre
         coffrealeatoires.AddRange(Armure.ListArmures());
         coffrealeatoires.AddRange(Arme.ListArme());
         coffrealeatoires.AddRange(Potion.ListPotions());
-        coffrealeatoires.AddRange(Item.ListDiversItems());
 
     }
 
