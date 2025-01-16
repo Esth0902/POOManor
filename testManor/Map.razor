@@ -57,8 +57,7 @@
         var caisse = Caisse.First(c => c.PositionX == col && c.PositionY == row);
         {
             <img src="@caisse.Image" class="coffreimage" alt=""/>
-        }
-        
+        } 
         }
             
     </div>
@@ -121,7 +120,7 @@
             }
         }
 
-        if (CanMoveTo(PlayerPositionY, PlayerPositionX, newPlayerRow, newPlayerCol))
+        if (CanMoveTo(PlayerPositionY, PlayerPositionX, newPlayerRow, newPlayerCol)) //vérifie si le joueur peut se déplacer au nouvel emplacement
         {
             PlayerPositionY = newPlayerRow;
             PlayerPositionX = newPlayerCol;
@@ -136,7 +135,7 @@
 
         var navigationMap = new Dictionary<(int etage, int X, int Y), string>
         {
-            { (11, 9, 5), "Map1E" },
+            { (11, 9, 5), "Map1E" }, //clefs de navigation vers les différentes pièces (positions des escaliers et destination)
             { (1, 9, 5), "MapRDC" },
             { (1, 0, 0), "MapGrenier" },
             { (2, 0, 0), "Map1E" },
@@ -278,7 +277,6 @@
                         CurrentFight.Start(); // Lancer le combat
                         if (CurrentFight.GameOver)
                         {
-                            HeroService.StopMoving = true;
                             Nav.NavigateTo("MapGameOver");
                         }
 
