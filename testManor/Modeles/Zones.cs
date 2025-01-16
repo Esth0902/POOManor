@@ -15,7 +15,7 @@ public class Zone
         EndColumn = endColumn;
     }
 
-    public bool IsInside(int row, int column)
+    public bool IsInside(int row, int column) //la position actuelle est-elle dans la zone ?
     {
         return row >= StartRow && row <= EndRow && column >= StartColumn && column <= EndColumn; //
     }
