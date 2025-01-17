@@ -70,6 +70,7 @@
 
     private void Flee()
     {
+        HeroService.MonHero.Life -= 10;
         Nav.NavigateTo(CombatService.CurrentMap); // Retourner à la carte
         HeroService.StopMoving = false;
     }
