@@ -5,7 +5,7 @@ public class Monsters
     public string Name { get; }
     public int PositionX { get; set; } // Colonne
     public int PositionY { get; set; } // Ligne
-    public virtual string Image { get; }
+    public virtual string Image { get; } //Virtual permet d'être redefini dans une classe dérivée - les monstres peuvent fournir leur propre propriété)
     protected internal int Life { get; set; }
     protected internal int Damage { get; set; }
     
@@ -48,7 +48,7 @@ public class Ghost : Monsters
 
 public class Werewolf : Monsters
 {
-    public override string Image => "images/werewolf.png";
+    public override string Image => "images/werewolf.png"; // Lié à Virtual et permet le changement de propriété 
     
     public Werewolf(string name, int positionX, int positionY) : base(name, positionX, positionY)
     {

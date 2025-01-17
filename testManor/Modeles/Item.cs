@@ -5,7 +5,7 @@ public class Item
     public string Nom { get; }
     public string Image { get; }   
     
-    public Item(string nom, string image)
+    public Item(string nom, string image) //Constructeur
     {
         Nom = nom;
         Image = image;

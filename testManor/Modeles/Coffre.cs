@@ -12,7 +12,6 @@ public class Coffre
     public string ImageOuvert = "images/coffreouvert.png";
     
     public Coffre(int positionX, int positionY)
-    //Constructeur de la classe Coffre
     {
         PositionX = positionX;
         PositionY = positionY;

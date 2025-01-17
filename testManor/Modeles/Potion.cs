@@ -1,6 +1,6 @@
 ﻿namespace testManor.Pages;
 
-public class Potion : Item
+public class Potion : Item //Herite de Item
 { public int Pointdevie { get; }
 
     public Potion(string nom, string image, int pointdevie) : base(nom, image)

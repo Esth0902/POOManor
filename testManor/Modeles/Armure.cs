@@ -1,6 +1,6 @@
 ﻿namespace testManor.Pages;
 
-public class Armure : Item
+public class Armure : Item //Herite de Item
 { public int PointDefense { get; }
 
     public Armure(string nom, string image, int pointDefense) : base(nom, image)

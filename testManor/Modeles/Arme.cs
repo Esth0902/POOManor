@@ -1,6 +1,6 @@
 ﻿namespace testManor.Pages;
 
-public class Arme : Item
+public class Arme : Item //Herite de la classe Item
 {
     public int Pointdegats { get; }
 

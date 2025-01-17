@@ -5,11 +5,11 @@ using testManor.Pages.Services;
 
 public class fight
 {
-    public MonHero Hero { get; private set; }
-    public Monsters Monster { get; private set; }
+    public MonHero Hero { get;  }
+    public Monsters Monster { get;  }
     public bool IsFightOver { get; private set; } = false;
     public bool GameOver { get; private set; } = false;
-    public string text { get; set; }
+    public string? Text { get; set; }
 
     public fight(MonHero hero, Monsters monster)
     {
@@ -24,11 +24,11 @@ public class fight
         if (Monster.Life <= 0)
         {
             IsFightOver = true;
-            text = "Vous avez vaincu le monstre !";
+            Text = "Vous avez vaincu le monstre !";
         }
         else
         {
-            text = $"Vous avez infligé {Hero.Damage} dégâts au monstre.";
+            Text = $"Vous avez infligé {Hero.Damage} dégâts au monstre.";
         }
     }
 
@@ -49,11 +49,11 @@ public class fight
         {
             IsFightOver = true;
             GameOver = true;
-            text = "Vous avez été vaincu par le monstre.";
+            Text = "Vous avez été vaincu par le monstre.";
         }
         else
         {
-            text = $"Le monstre vous a infligé {Monster.Damage} dégâts.";
+            Text = $"Le monstre vous a infligé {Monster.Damage} dégâts.";
         }
     }
 }
