@@ -22,11 +22,12 @@
         <input type="radio" name="Personnage" value="Homme" @onchange="MAJPerso"> 
         <img src="images/HeroM.png" alt="Homme" class="ChoixPersonnageImage"> Un voleur
     </label><br>
-
+    
     <form method="post"> 
         <div class="form"> 
             <label for="Name">Entrez votre nom :</label> 
-            <input type="text" class="form-control" id="Name" @bind="NomJoueur" /> 
+            <input type="text" class="form-control" id="Name" @bind="NomJoueur" />
+            @* @bind permet de mettre la variable à jour avec le champ entré *@
         </div> 
     </form>
 
