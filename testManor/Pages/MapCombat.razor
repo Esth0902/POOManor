@@ -38,9 +38,9 @@
     private fight CurrentFight;
     private string CombatLog;
 
-    protected override void OnInitialized()
+    protected override void OnInitialized() // Initialiser les composants 
     {
-        if (CombatService.CurrentMonster != null)
+        if (CombatService.CurrentMonster != null) //Si monstre présent
         {
             CurrentFight = new fight(HeroService.MonHero, CombatService.CurrentMonster);
             CombatLog = "Le combat commence !";
