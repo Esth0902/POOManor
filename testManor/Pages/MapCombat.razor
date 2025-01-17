@@ -5,19 +5,20 @@
 @inject CombatService CombatService
 @inject NavigationManager Nav
 
+<!--Affiche les informations du combat -->
 <div class="combat-map">
     <div class="hero-info">
         <img src="@HeroService.MonHero.Image" alt="Hero" />
         <p>@HeroService.MonHero.Nom</p>
-        <p>Vie: @HeroService.MonHero.Life</p>
-        <p>Dégâts: @HeroService.MonHero.Damage</p>
-        <p>Armure: @HeroService.MonHero.Armor</p>
+        <p>Vie : @HeroService.MonHero.Life</p>
+        <p>Dégâts : @HeroService.MonHero.Damage</p>
+        <p>Armure : @HeroService.MonHero.Armor</p>
     </div>
     <div class="monster-info">
         <img src="@CombatService.CurrentMonster.Image" alt="@CombatService.CurrentMonster.Name" />
         <p>@CombatService.CurrentMonster.Name</p>
-        <p>Vie: @CombatService.CurrentMonster.Life</p>
-        <p>Dégâts: @CombatService.CurrentMonster.Damage</p>
+        <p>Vie : @CombatService.CurrentMonster.Life</p>
+        <p>Dégâts : @CombatService.CurrentMonster.Damage</p>
     </div>
 </div>
 
@@ -28,6 +29,9 @@
 
 <div class="combat-log">
     <p>@CombatLog</p>
+</div>
+<div class="note">
+    <p>Note : Si vous choisissez de vous enfuir, vous perdrez votre armure et 5 points de vie.</p>
 </div>
 
 @code {

@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    color: white; /* Met le texte en blanc */
+    color: #BFAA93; 
 }
 
 .hero-info, .monster-info {
@@ -11,12 +11,13 @@
     padding: 10px;
     width: 45%;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Ajoute un fond semi-transparent pour améliorer la lisibilité */
+    background-color: rgba(0, 0, 0, 0.5); /* fond semi-transparent  */
+    border-radius: 12px; 
 }
 
 .hero-info img, .monster-info img {
-    width: 50px; /* Réduit la taille des images */
-    height: 50px; /* Réduit la taille des images */
+    width: 90px;
+    height: 90px; 
     display: block;
     margin: 0 auto 10px;
 }
@@ -29,13 +30,21 @@
 
 .combat-actions button {
     margin: 0 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 30px;
+    font-size: 35px;
     cursor: pointer;
+    border-radius: 12px; 
+    background-color: #3E8199; 
+    color: #BFAA93; 
+    border: none; 
 }
 
 .combat-log {
     margin-top: 20px;
     text-align: center;
     font-size: 18px;
+}
+
+.note{
+    color: #BFAA93;
 }
