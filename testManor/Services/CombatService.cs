@@ -3,5 +3,5 @@
 public class CombatService
 {
     public Monsters CurrentMonster { get; set; }
-    public string CurrentMap { get; set; } 
+    public string? CurrentMap { get; set; } 
 }

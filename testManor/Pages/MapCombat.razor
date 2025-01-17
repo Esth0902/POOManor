@@ -70,7 +70,8 @@
 
     private void Flee()
     {
-        Nav.NavigateTo("/Map"); // Retourner à la carte
+        Nav.NavigateTo(CombatService.CurrentMap); // Retourner à la carte
+        HeroService.StopMoving = false;
     }
 
     private void UpdateCombatLog()
@@ -89,9 +90,9 @@
         }
         else
         {
-            // Retirer le monstre de la liste des monstres
             CombatService.CurrentMonster.Life = 0; // Assurez-vous que la vie du monstre est à 0
-            Nav.NavigateTo("/Map"); // Retourner à la carte
+            Nav.NavigateTo(CombatService.CurrentMap); // Retourner à la carte
+            HeroService.StopMoving = false;
         }
     }
 }

@@ -78,6 +78,7 @@
 // liste de paramètres nécessaires à la création d'une nouvelle map
 
     [Parameter] public string? CurrentFloorImage { get; set; }
+    [Parameter] public string? StockMap { get; set; } = "MapRDC";
     [Parameter] public string? CurrentMap { get; set; }
     [Parameter] public int Row { get; set; }
     [Parameter] public int Column { get; set; }
@@ -147,7 +148,7 @@
 
         if (navigationMap.TryGetValue((Etage, PlayerPositionX, PlayerPositionY), out var destination))
         {
-          
+            StockMap = destination;
             if (objetsNecessairesParMap.TryGetValue(destination, out var mapInfo))
             {
              
@@ -178,7 +179,7 @@
             var monster = MonstersList.First(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive());
             HeroService.StopMoving = true;
             CombatService.CurrentMonster = monster; // Stocker le monstre dans le service
-            CombatService.CurrentMap = CurrentMap; // Stocker la carte actuelle dans le service
+            CombatService.CurrentMap = StockMap; // Stocker la carte actuelle dans le service
             Nav.NavigateTo("/MapCombat"); // Naviguer vers la carte de combat
         }
         else if (CombatService.CurrentMonster != null && CombatService.CurrentMonster.Life <= 0)
