@@ -181,6 +181,7 @@
             if (CurrentFight.GameOver) {
                 Nav.NavigateTo("MapGameOver");
             }
+            else HeroService.StopMoving = false;
             TresorTexte = CurrentFight.text;
         }
 
