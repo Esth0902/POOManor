@@ -146,18 +146,17 @@
             { (12, 19, 4), "Fin" }
         };
 
-        if (navigationMap.TryGetValue((Etage, PlayerPositionX, PlayerPositionY), out var destination))
+        if (navigationMap.TryGetValue((Etage, PlayerPositionX, PlayerPositionY), out var destination)) //si la clef de navigation existe, renvoie la destination
         {
-            StockMap = destination;
-            if (objetsNecessairesParMap.TryGetValue(destination, out var mapInfo))
+            if (objetsNecessairesParMap.TryGetValue(destination, out var mapInfo)) //si la destination renvoie des objets requis
             {
              
-                if (!ObjetsRequis(mapInfo.ObjetsNecessaires))
+                if (!ObjetsRequis(mapInfo.ObjetsNecessaires)) //vérifier si l'inventaire contient les objets nécessaires
                 {
                 
                     var objetsManquants = mapInfo.ObjetsNecessaires
-                        .Where(item => !HeroService.ListInventaire.Contains(item))
-                        .ToList();
+                        .Where(item => !HeroService.ListInventaire.Contains(item)) //teste chaque élément et le sélectionne s'il n'est pas dans l'inventaire
+                        .ToList();//convertit la séquence filtrée en liste
                     
                     TresorTexte = mapInfo.TresorTexte;
                     
@@ -167,7 +166,7 @@
 
             if (destination == "Fin")
             {
-                HeroService.StopMoving = true;
+                HeroService.StopMoving = true; 
             }
 
             Nav.NavigateTo(destination); 
