@@ -16,29 +16,23 @@ public class fight
         Hero = hero;
         Monster = monster;
     }
-    public async void Start()
-    {
-        while (!IsFightOver)
-        {
-            HeroTurn();
-            if (IsFightOver) break;
-            MonsterTurn();
-        }
-    }
 
-    private void HeroTurn()
+    public void HeroTurn()
     {
         if (IsFightOver) return;
-
         Monster.Life -= Hero.Damage;
         if (Monster.Life <= 0)
         {
             IsFightOver = true;
             text = "Vous avez vaincu le monstre !";
         }
+        else
+        {
+            text = $"Vous avez infligé {Hero.Damage} dégâts au monstre.";
+        }
     }
 
-    private void MonsterTurn()
+    public void MonsterTurn()
     {
         if (IsFightOver) return;
         if (Hero.Armor - Monster.Damage > 0)
@@ -47,7 +41,7 @@ public class fight
         }
         else
         {
-            Hero.Armor-=Math.Min(Hero.Armor, Monster.Damage);
+            Hero.Armor -= Math.Min(Hero.Armor, Monster.Damage);
             Hero.Life -= Monster.Damage - Hero.Armor;
         }
 
@@ -55,6 +49,11 @@ public class fight
         {
             IsFightOver = true;
             GameOver = true;
+            text = "Vous avez été vaincu par le monstre.";
+        }
+        else
+        {
+            text = $"Le monstre vous a infligé {Monster.Damage} dégâts.";
         }
     }
 }

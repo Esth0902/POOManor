@@ -1,6 +1,97 @@
-@page "/MapCombat"
+﻿@page "/MapCombat"
+@using testManor.Pages
+@using testManor.Pages.Services
+@inject HeroService HeroService
+@inject CombatService CombatService
+@inject NavigationManager Nav
 
-<div>
-    <h1>Combat</h1>
-    
+<div class="combat-map">
+    <div class="hero-info">
+        <img src="@HeroService.MonHero.Image" alt="Hero" />
+        <p>@HeroService.MonHero.Nom</p>
+        <p>Vie: @HeroService.MonHero.Life</p>
+        <p>Dégâts: @HeroService.MonHero.Damage</p>
+        <p>Armure: @HeroService.MonHero.Armor</p>
+    </div>
+    <div class="monster-info">
+        <img src="@CombatService.CurrentMonster.Image" alt="@CombatService.CurrentMonster.Name" />
+        <p>@CombatService.CurrentMonster.Name</p>
+        <p>Vie: @CombatService.CurrentMonster.Life</p>
+        <p>Dégâts: @CombatService.CurrentMonster.Damage</p>
+    </div>
 </div>
+
+<div class="combat-actions">
+    <button @onclick="Attack">Attaquer</button>
+    <button @onclick="Flee">S'enfuir</button>
+</div>
+
+<div class="combat-log">
+    <p>@CombatLog</p>
+</div>
+
+@code {
+    private fight CurrentFight;
+    private string CombatLog;
+
+    protected override void OnInitialized()
+    {
+        if (CombatService.CurrentMonster != null)
+        {
+            CurrentFight = new fight(HeroService.MonHero, CombatService.CurrentMonster);
+            CombatLog = "Le combat commence !";
+        }
+        else
+        {
+            Nav.NavigateTo(CombatService.CurrentMap); // Retourner à la carte si aucun monstre n'est trouvé
+        }
+    }
+
+    private void Attack()
+    {
+        if (CurrentFight != null)
+        {
+            CurrentFight.HeroTurn();
+            UpdateCombatLog();
+            if (CurrentFight.IsFightOver)
+            {
+                HandleFightEnd();
+                return;
+            }
+
+            CurrentFight.MonsterTurn();
+            UpdateCombatLog();
+            if (CurrentFight.IsFightOver)
+            {
+                HandleFightEnd();
+            }
+        }
+    }
+
+    private void Flee()
+    {
+        Nav.NavigateTo("/Map"); // Retourner à la carte
+    }
+
+    private void UpdateCombatLog()
+    {
+        if (CurrentFight != null)
+        {
+            CombatLog = CurrentFight.text;
+        }
+    }
+
+    private void HandleFightEnd()
+    {
+        if (CurrentFight.GameOver)
+        {
+            Nav.NavigateTo("/MapGameOver");
+        }
+        else
+        {
+            // Retirer le monstre de la liste des monstres
+            CombatService.CurrentMonster.Life = 0; // Assurez-vous que la vie du monstre est à 0
+            Nav.NavigateTo("/Map"); // Retourner à la carte
+        }
+    }
+}

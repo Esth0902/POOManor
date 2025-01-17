@@ -3,6 +3,7 @@
 @using testManor.Pages.Services
 @inject NavigationManager Nav
 @inject HeroService HeroService
+@inject CombatService CombatService 
 
 <!-- Affichage des stats du héro, mise à jour via HeroService -->
 
@@ -175,14 +176,15 @@
         if (MonstersList.Any(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive()))
         {
             var monster = MonstersList.First(m => m.PositionX == PlayerPositionX && m.PositionY == PlayerPositionY && m.Alive());
-            CurrentFight = new fight(HeroService.MonHero, monster);
-            CurrentFight.Start(); // Lancer le combat
             HeroService.StopMoving = true;
-            if (CurrentFight.GameOver) {
-                Nav.NavigateTo("MapGameOver");
-            }
-            else HeroService.StopMoving = false;
-            TresorTexte = CurrentFight.text;
+            CombatService.CurrentMonster = monster; // Stocker le monstre dans le service
+            CombatService.CurrentMap = CurrentMap; // Stocker la carte actuelle dans le service
+            Nav.NavigateTo("/MapCombat"); // Naviguer vers la carte de combat
+        }
+        else if (CombatService.CurrentMonster != null && CombatService.CurrentMonster.Life <= 0)
+        {
+            MonstersList.Remove(CombatService.CurrentMonster);
+            CombatService.CurrentMonster = null;
         }
 
         var caisse = Caisse.FirstOrDefault(c => c.PositionX == PlayerPositionX && c.PositionY == PlayerPositionY);
@@ -275,7 +277,6 @@
                     if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY && monster.Alive())
                     {
                         CurrentFight = new fight(HeroService.MonHero, monster);
-                        CurrentFight.Start(); // Lancer le combat
                         if (CurrentFight.GameOver)
                         {
                             Nav.NavigateTo("MapGameOver");
