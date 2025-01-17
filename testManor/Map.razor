@@ -250,13 +250,13 @@
             if (MonstersList != null)
                 foreach (var monster in MonstersList)
                 {
-                    int direction = random.Next(4);
-                    int newRow = monster.PositionY, newCol = monster.PositionX;
+                    int direction = random.Next(4); // random entre 0 et 3
+                    int newRow = monster.PositionY, newCol = monster.PositionX; //stocke la position initiale du monstre
 
                     switch (direction)
                     {
                         case 0:
-                            newRow = monster.PositionY - 1;
+                            newRow = monster.PositionY - 1; //modifie la position stockée
                             break; // Haut
                         case 1:
                             newRow = monster.PositionY + 1;
@@ -271,7 +271,7 @@
 
                     if (CanMoveTo(monster.PositionY, monster.PositionX, newRow, newCol))
                     {
-                        monster.PositionY = newRow;
+                        monster.PositionY = newRow; //redéfini la position initiale sur base de la position stockée
                         monster.PositionX = newCol;
                     }
 
@@ -288,7 +288,7 @@
                 }
 
             StateHasChanged();
-            await Task.Delay(500);
+            await Task.Delay(500); // délai de 5 secondes entre les déplacements
         }
     }
 
