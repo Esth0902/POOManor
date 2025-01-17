@@ -70,7 +70,8 @@
 
     private void Flee()
     {
-        HeroService.MonHero.Life -= 10;
+        HeroService.MonHero.Armor = 0;
+        HeroService.MonHero.Life -= 5;
         Nav.NavigateTo(CombatService.CurrentMap); // Retourner à la carte
         HeroService.StopMoving = false;
     }
@@ -92,6 +93,7 @@
         else
         {
             CombatService.CurrentMonster.Life = 0; // Assurez-vous que la vie du monstre est à 0
+            HeroService.MonHero.Damage += 1;
             Nav.NavigateTo(CombatService.CurrentMap); // Retourner à la carte
             HeroService.StopMoving = false;
         }
