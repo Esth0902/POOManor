@@ -51,20 +51,23 @@
         }
     }
 
-    private void Attack()
+    private async void Attack()
     {
         if (CurrentFight != null)
         {
             CurrentFight.HeroTurn();
             UpdateCombatLog();
+            StateHasChanged();
             if (CurrentFight.IsFightOver)
             {
                 HandleFightEnd();
                 return;
             }
 
+            await Task.Delay(1000);
             CurrentFight.MonsterTurn();
             UpdateCombatLog();
+            StateHasChanged();
             if (CurrentFight.IsFightOver)
             {
                 HandleFightEnd();
