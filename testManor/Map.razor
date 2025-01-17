@@ -276,13 +276,10 @@
 
                     if (monster.PositionX == PlayerPositionX && monster.PositionY == PlayerPositionY && monster.Alive())
                     {
-                        CurrentFight = new fight(HeroService.MonHero, monster);
-                        if (CurrentFight.GameOver)
-                        {
-                            Nav.NavigateTo("MapGameOver");
-                        }
-
-                        TresorTexte = CurrentFight.Text;
+                        HeroService.StopMoving = true;
+                        CombatService.CurrentMonster = monster; // Stocker le monstre dans le service
+                        CombatService.CurrentMap = StockMap; // Stocker la carte actuelle dans le service
+                        Nav.NavigateTo("/MapCombat"); // Naviguer vers la carte de combat
                     }
                 }
 
