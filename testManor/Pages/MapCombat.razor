@@ -21,15 +21,15 @@
         <p>Dégâts : @CombatService.CurrentMonster.Damage</p>
     </div>
 </div>
-
+<div class="combat-log">
+    <p>@CombatLog</p>
+</div>
 <div class="combat-actions">
     <button @onclick="Attack">Attaquer</button>
     <button @onclick="Flee">S'enfuir</button>
 </div>
 
-<div class="combat-log">
-    <p>@CombatLog</p>
-</div>
+
 <div class="note">
     <p>Note : Si vous choisissez de vous enfuir, vous perdrez votre armure et 5 points de vie.</p>
 </div>
